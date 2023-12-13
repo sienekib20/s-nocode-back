@@ -12,7 +12,9 @@ class CreateTempParceirosTable
 			`template_id` int(11) not null,
 			`created_at` timestamp not null default current_timestamp,
 			`updated_at` timestamp null,
-			primary key(`temp_parceiro_id`)
+			primary key(`temp_parceiro_id`),
+            foreign key(`parceiro_id`) references parceiros(`parceiro_id`),
+            foreign key(`template_id`) references templates(`template_id`)
 		");
 	}
 

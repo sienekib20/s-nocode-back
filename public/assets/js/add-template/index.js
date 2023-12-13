@@ -2,7 +2,7 @@ $('document').ready(() => {
 
     $('[name="temp_payment_status"]').change((e) => {
         var in_ = $('[name="temp_price"]');
-        e.target.value == 'P' ? in_.removeAttr('disabled') : in_.attr('disabled', 'disabled');
+        (e.target.value == 'Pago') ? in_.removeAttr('disabled') : in_.attr('disabled', 'disabled');
 
 
         //console.log(in_.removeAttr('disabled'));

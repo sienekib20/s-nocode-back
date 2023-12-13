@@ -60,6 +60,31 @@ class Database
 					$stmt->bindValue($i, $values[$i - 1]);
 				}
 				$stmt->execute();
+				return $this->connection->commit();
+			}, $data);
+		} catch (PDOException $e) {
+			$this->connection->rollBack();
+			echo $e->getMessage();
+			exit;
+		}
+	}
+
+    public function insertId(array $data)
+	{
+		try {
+			$data = is_array(array_values($data)[0]) ? $data : [$data];
+
+			array_map(function ($data) {
+				$columns = implode(', ', array_keys($data));
+				$wildcards =  implode(', ', array_pad([], count($data), '?'));
+				$sql = "INSERT INTO {$this->table}($columns) VALUES($wildcards)";
+
+				$this->connection->beginTransaction();
+				$stmt = $this->connection->prepare($sql);
+				for ($i = 1; $i <= count($values = array_values($data)); $i++) {
+					$stmt->bindValue($i, $values[$i - 1]);
+				}
+				$stmt->execute();
 				$this->connection->commit();
 				return $this->connection->lastInsertId();
 			}, $data);

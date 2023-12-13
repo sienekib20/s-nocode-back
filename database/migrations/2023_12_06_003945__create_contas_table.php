@@ -11,7 +11,7 @@ class CreateContasTable
 			`uuid` varchar(250) not null,
 			`nome` varchar(250) not null,
 			`apelido` varchar(250) not null,
-			`data_nasc` date not null,
+			`data_nasc` varchar(250) not null,
 			`genero` enum('M', 'F') not null,
 			`email` varchar(250) not null,
 			`telefone` varchar(50) not null,

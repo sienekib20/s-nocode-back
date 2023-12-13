@@ -9,64 +9,82 @@ use Sienekib\Mehael\Database\Factory\DB;
 class templates extends Controller
 {
 
-	public function index()
-	{
-		$data = [];
+    public function index()
+    {
+        $data = [];
 
-		// TODO: coloque o seu código
+        // TODO: coloque o seu código
 
-		return view('titulo:caminho.da.tela', compact('data'));
-	}
+        return view('titulo:caminho.da.tela', compact('data'));
+    }
 
-	public function listar_todos()
-	{
-		$templates = [];
+    public function listar_todos()
+    {
+        $templates = DB::table('templates')->get();
 
-		return view('Todos os template:app.templates.templates', compact('templates'));
-	}
+        return view('Todos os template:app.templates.templates', compact('templates'));
+    }
 
-	public function add_template()
-	{
-		return view('Adicionar template:app.templates.add-template');
-	}
+    public function add_template()
+    {
 
-	// Cria um registo na DB
+        $tipo = DB::table('tipo_templates')->get();
 
-	public function store(Request $request)
-	{
-		// TODO: coloqe o seu código
+        return view('Adicionar template:app.templates.add-template', compact('tipo'));
+    }
 
-		return redirect()->route('rota.de.redirecionamento');
-	}
+    // Cria um registo na DB
 
-	// Pega um registo(s) na DB
+    public function store(Request $request)
+    {
 
-	public function read(Request $request)
-	{
-		$data = [];
+        $build_file_template = "<style>{$request->css}</style>";
+        $build_file_template .= $request->html;
+        $build_file_template .= "<script>{$request->js}</script>";
 
-		// TODO: coloqe o seu código
+        var_dump($build_file_template);
+        exit;
 
-		return response()->json($data);
-	}
+        $fileId = DB::table('files')->insertId([]); // inserir file
 
-	// Atualizações de um ou + registos na DB
+        $result = DB::table('templates')->insert(['titulo' => $request->temp_title, 'referencia' => $request->generated, 'tipo_template_id' => $request->temp_type, 'editar' => $request->temp_editable, 'descricao' => $request->temp_description, 'preco' => $request->temp_price == null ? '0.00' : $request->temp_price, 'status' => $request->temp_payment_status]);
 
-	public function update(Request $request)
-	{
-		// TODO: coloqe o seu código
+        if ($request == true) {
 
-		return redirect()->backWith('success', 'mensagem de sucesso');
-	}
+            return redirect()->route('rota.de.redirecionamento');
+        }
 
-	// Apaga um registo na DB
+        return redirect()->route('rota.de.redirecionamento');
+    }
 
-	public function delete(Request $request)
-	{
-		DB::table('tabela')->where('id', '=', $request->id)->delete();
+    // Pega um registo(s) na DB
 
-		// TODO: coloqe o seu código
+    public function read(Request $request)
+    {
+        $data = [];
 
-		return redirect()->back();
-	}
+        // TODO: coloqe o seu código
+
+        return response()->json($data);
+    }
+
+    // Atualizações de um ou + registos na DB
+
+    public function update(Request $request)
+    {
+        // TODO: coloqe o seu código
+
+        return redirect()->backWith('success', 'mensagem de sucesso');
+    }
+
+    // Apaga um registo na DB
+
+    public function delete(Request $request)
+    {
+        DB::table('tabela')->where('id', '=', $request->id)->delete();
+
+        // TODO: coloqe o seu código
+
+        return redirect()->back();
+    }
 }

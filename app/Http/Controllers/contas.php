@@ -11,11 +11,11 @@ class contas extends Controller
 
 	public function parceiros()
 	{
-		$data = [];
+		$data = DB::table('parceiros')->get();
 
 		// TODO: coloque o seu código
 
-		return view('titulo:caminho.da.tela', compact('data'));
+		return view('Parceios:app.parceiros.parceiros', compact('data'));
 	}
 
 	// Cria um registo na DB

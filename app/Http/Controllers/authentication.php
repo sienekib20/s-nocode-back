@@ -27,6 +27,7 @@ class authentication extends Controller
 
 		if (password_verify($request->password, $data->password)) {
 
+            session()->set('user', $data->username);
 			session()->set('user_id', $data->user_id)->regenerateId();
 
 			return redirect()->route('nocode');

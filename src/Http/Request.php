@@ -32,13 +32,15 @@ class Request
     {
         if ($this->method() == 'GET') {
             foreach ($_GET as $key => $value) {
-                $this->data[$key] = strip_tags($value);
+                //$this->data[$key] = strip_tags($value);
+                $this->data[$key] = htmlspecialchars($value);
             }
         }
 
         if ($this->method() == 'POST') {
             foreach ($_POST as $key => $value) {
-                $this->data[$key] = strip_tags($value);
+                //$this->data[$key] = strip_tags($value);
+                $this->data[$key] = htmlspecialchars($value);
             }
         }
 

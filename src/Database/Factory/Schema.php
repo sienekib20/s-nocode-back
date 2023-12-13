@@ -27,4 +27,16 @@ class Schema
             exit;
         }
     }
+
+    public static function dropDbAndCreate(string $db)
+    {
+        try {
+            (new Connection())->getConnection()->exec("DROP DATABASE IF EXISTS $db");
+            (new Connection())->getConnection()->exec("CREATE DATABASE IF NOT EXISTS $db");
+            (new Connection())->getConnection()->exec("USE $db");
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
 }

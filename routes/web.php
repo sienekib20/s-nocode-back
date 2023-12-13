@@ -18,7 +18,8 @@ Route::add('POST', '/register', [authentication::class, 'criar_conta']);
 Route::prefix('templates')->group('auth:authorize', function() {
     Route::add('GET', '/list', [templates::class, 'listar_todos']);
     Route::add('GET', '/add', [templates::class, 'add_template']);
-    Route::add('POST', '/edit', [templates::class, 'update']);
+    Route::add('POST', '/create', [templates::class, 'store']);
+    Route::add('GET', '/edit', [templates::class, 'update']);
 });
 
 Route::group('auth:authorize', function() {
