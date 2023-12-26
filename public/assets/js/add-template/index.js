@@ -1,3 +1,13 @@
+
+function is_empty(field) {
+    if ((field.val().length == 0)) {
+        alert('Campo vazio');
+        field.focus();
+        return;
+    }
+    return field.val();
+}
+
 $('document').ready(() => {
 
     $('[name="temp_payment_status"]').change((e) => {
@@ -7,14 +17,10 @@ $('document').ready(() => {
 
         //console.log(in_.removeAttr('disabled'));
     });
-
-
-    const images = new Array();
-    const assets = new Array();
     const pages = new Array();
     const cover = new Array();
 
-    document.getElementById('temp_cover').addEventListener('change', (e) => {
+    document.getElementById('cover').addEventListener('change', (e) => {
         var reader = new FileReader();
 
         var item = {
@@ -27,19 +33,13 @@ $('document').ready(() => {
         reader.onload = function (event) {
             item.file = event.target.result
             item.name = fileName;
-
-            var container = e.target.nextElementSibling;
-            container.classList.length < 2 ? container.classList.add('active') : '';
-            var img = e.target.nextElementSibling.querySelector('img');
-            img.src = '';
-            img.src = item.file;
         };
         reader.readAsDataURL(e.target.files[0]);
 
         cover.push(item);
     });
 
-    document.getElementById('temp_images').addEventListener('change', function (e) {
+    /*document.getElementById('temp_images').addEventListener('change', function (e) {
         const files = this.files;
 
         for (let i = 0; i < files.length; i++) {
@@ -115,81 +115,56 @@ $('document').ready(() => {
 
             assets.push(asset);
         }
-    });
+    });*/
 
 
     $('#btn-add-template').click((e) => {
 
+        // 1. Verificar campos vazios
+
         e.preventDefault();
-
+        
+        // 2. Pegar os dados 
         let dataForm = {
-
-            temp_title: $('#temp_title').val(),
-
-            temp_description: $('#temp_description').val(),
-
-            temp_editable: $('#temp_editable').val(),
-
-            temp_price: $('#temp_price').val(),
-
-            temp_payment_status: $('#temp_payment_status').val(),
-
-            temp_type: $('#temp_type').val(),
-
+            titulo: $('#title').val(), 
+            referencia: $('#generated').val(), 
+            descricao: $('#descricao').val(), 
+            code_js : $('#code-js').val(),
+            code_css : $('#code-css').val(),
+            code_html : $('#code-html').val(),
+            editar: $('#editable').val(), 
+            preco: $('#preco').val(), 
+            status: $('#paystatus').val(),
+            tipo: $('#tipo').val(), 
+            cover_name: cover[0].name, 
+            cover_file: cover[0].file
         }
+        const data = {dataForm: dataForm};
+        //const data = {dataForm: dataForm, cover: 'items'};
 
-
-        const data = {
-            dataForm: dataForm,
-            cover: cover,
-            images: images,
-            pages: pages,
-            assets: assets
-        };
-
-        console.log(images);
-
-        const url = 'http://localhost:5000/api/template';
+        const url = $('#api_route').val();
+        //mode: no-cors
         fetch(url, {
-            method: 'POST',
-            //mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then(response => {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json',
+                }, 
+                //mode: 'no-cors',
+                body: JSON.stringify(dataForm),
+            }).then(response => {
                 if (response.ok) {
+                    
                     return response.json();
+
                 } else {
                     throw new Error('Erro na solicitação');
                 }
-            })
-            .then(data => {
+            }).then(data => {
                 console.log('Resposta da API:', data);
-            })
-            .catch(error => {
+            }).catch(error => {
                 console.error('Erro:', error);
             });
-
-        /*
-        $.ajax({
-            url: 'http://localhost:5000/api/template',
-            type: 'POST',
-            data: {
-                data: dataForm,
-                temp_images: bs64,
-            },
-            success: function (res) {
-                console.log(res);
-                return;
-            },
-            error: function (res) {
-                console.log('erro');
-            }
-        })*/
-
-    });
+        });
 
 });
 

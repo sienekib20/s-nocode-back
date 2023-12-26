@@ -1,10 +1,4 @@
 <?php
-
-
-// Iniciar as sessions
-
-session_start();
-
 /*
 |--------------------------------------------
 | Auto carregamento das classes

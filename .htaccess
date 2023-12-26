@@ -1,0 +1,10 @@
+RewriteEngine On
+
+
+Header setifempty Access-Control-Allow-Origin "*"
+Header setifempty Access-Control-Allow-Headers "*"
+Header setifempty Access-Control-Allow-Credentials true
+Header setifempty Access-Control-Allow-Methods "GET, POST, OPTIONS"
+
+RewriteRule ^$ public/$1 [L]
+RewriteRule (.+) public/ [L]

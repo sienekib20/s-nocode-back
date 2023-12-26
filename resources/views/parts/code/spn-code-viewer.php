@@ -11,9 +11,9 @@
         </div>
 
         <div class="code-viewer-body">
-            <textarea name="html" class="switch-contain-item active" placeholder="<!-- cola o codigo html -->"></textarea>
-            <textarea name="css" class="switch-contain-item" placeholder="/* stylesheet */"></textarea>
-            <textarea name="js" class="switch-contain-item" placeholder="// javascript: Evite variáveis como i, index, key, de preferencias com estilo próprio"></textarea>
+            <textarea id="code-html" name="html" class="switch-contain-item active" placeholder="<!-- cola o codigo html -->"></textarea>
+            <textarea id="code-css" name="css" class="switch-contain-item" placeholder="/* stylesheet */"></textarea>
+            <textarea id="code-js" name="js" class="switch-contain-item" placeholder="// javascript: Evite variáveis como i, index, key, de preferencias com estilo próprio"></textarea>
         </div>
 
     </div> <!-- code-viewer-contain -->

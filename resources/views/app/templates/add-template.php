@@ -33,14 +33,14 @@
         <div class="card-section">
             <div class="card-section-contain">
                 <div class="spn-container">
-                    <form action="<?= route('templates.create') ?>" method="POST" class="spn-form" enctype="multipart/form-data">
+                    <form action="<?= route('templates.create') ?>" method="POST" class="spn-form" id="add-template-form" enctype="multipart/form-data">
                         <div class="spn-form-row">
                             <div class="spn-form-item">
-                                <input type="text" name="temp_title" id="temp_title" class="form-input" autocomplete="off" required>
+                                <input type="text" name="titulo" id="title" class="form-input" autocomplete="off" required>
                                 <span class="form-label">Título</span>
                             </div>
                             <div class="spn-form-item">
-                                <input type="text" name="generated" id="generated" class="form-input" value="sn_0000_name_tmp" readonly required>
+                                <input type="text" name="referencia" id="generated" class="form-input" value="sn_0000_name_tmp" readonly required>
                                 <small class="form-label">Referência gerada</small>
                                 <small class="bi-copy"></small>
                             </div>
@@ -48,21 +48,21 @@
                         <div class="spn-form-row">
                             <div class="spn-form-"></div>
                             <div class="spn-form-item">
-                                <input type="text" name="temp_description" id="temp_description" class="form-input" autocomplete="off" required>
+                                <input type="text" name="descricao" id="descricao" class="form-input" autocomplete="off" required>
                                 <span class="form-label">Descrição</span>
                             </div>
                         </div>
 
                         <div class="spn-form-row">
                             <div class="spn-form-item">
-                                <select name="temp_editable" id="temp_editable" class="form-input">
+                                <select name="editar" id="editable" class="form-input">
                                     <option value="YES">Editável</option>
                                     <option value="NO">Não editável</option>
                                 </select>
                                 <span class="form-label">Nível de acesso</span>
                             </div>
                             <div class="spn-form-item">
-                                <select name="temp_type" id="temp_type" class="form-input">
+                                <select name="tipo_template" id="tipo" class="form-input">
                                     <?php foreach ($tipo as $t) : ?>
                                         <option value="<?= $t->tipo_template_id ?>"><?= $t->tipo_template ?></option>
                                     <?php endforeach; ?>
@@ -73,41 +73,41 @@
 
                         <div class="spn-form-row">
                             <div class="spn-form-item">
-                                <select name="temp_payment_status" id="temp_payment_status" class="form-input">
+                                <select name="status" id="paystatus" class="form-input">
                                     <option value="Grátis">Grátis</option>
                                     <option value="Pago">Pago</option>
                                 </select>
                                 <span class="form-label">Status</span>
                             </div>
-                            <div></div>
-                        </div>
-                        <div class="spn-form-row">
-                            <div class="spn-form-item">
-                                <input type="text" name="temp_price" class="form-input" autocomplete="off" value="0.00" disabled required>
-                                <span class="form-label">Valor</span>
-                            </div>
-                            <div class="spn-form-item">
-                                <input type="file" id="temp_pages" name="temp_pages[]" accept=".php,.html" multiple hidden>
-                                <label for="temp_pages" class="form-label">+ Páginas</label>
-                            </div>
-                        </div>
-
-                        <div class="spn-form-row">
-                            <div class="spn-form-item">
-                                <input type="file" id="temp_assets" name="temp_assets[]" accept="image/*" multiple hidden>
-                                <label for="temp_assets" class="form-label">+ Capa</label>
-                            </div>
-                            <div class="spn-form-item">
-                                <input type="file" id="temp_images" name="temp_images[]" accept="image/*" multiple hidden>
-                                <label for="temp_images" class="form-label">+ imagens</label>
-                            </div>
-                        </div>
-
-                        <div class="spn-form-row">
-                            <div></div>
                             <div class="spn-form-item">
                                 <label id="load_code_viewer" class="form-label">Código</label>
                             </div>
+                        </div>
+                        <div class="spn-form-row">
+                            <div class="spn-form-item">
+                                <input type="text" name="preco" id="preco" class="form-input" autocomplete="off" value="0.00" disabled required>
+                                <span class="form-label">Valor</span>
+                            </div>
+                            <div class="spn-form-item">
+                                <input type="file" id="cover" name="cover" accept="image/*" multiple hidden>
+                                <label for="cover" class="form-label">+ Capa</label>
+                            </div>
+                           
+                        </div>
+
+                        <div class="spn-form-row">
+                            <!--<div class="spn-form-item">
+                                <input type="file" id="temp_pages" name="páginas" accept=".php,.html" multiple hidden>
+                                <label for="temp_pages" class="form-label">+ Páginas</label>
+                            </div>-->
+                        </div>
+
+                        <div class="spn-form-row">
+                            <div></div>
+                            <!--<div class="spn-form-item">
+                                <input type="file" id="temp_images" name="temp_images[]" accept="image/*" multiple hidden>
+                                <label for="temp_images" class="form-label">+ imagens</label>
+                            </div>-->
                         </div>
 
                         <div class="spn-form-row">
@@ -135,7 +135,10 @@
 </body>
 
 </html>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<div class="routes">
+    <input type="hidden" value="<?= env('API_URL') ?>" id="api_route">
+</div>
 
 <script src="<?= asset('js/add-template/index.js') ?>"></script>
 <script>
@@ -146,9 +149,9 @@
 
     let template_name = '',
         generated;
-    const sec = new Date().getMilliseconds()
+    const sec = new Date().getMilliseconds();
 
-    document.querySelector('#temp_title').addEventListener('keydown', (e) => {
+    document.querySelector('#title').addEventListener('keydown', (e) => {
         const generated = document.querySelector('#generated');
         const reference = gerar_referencia(e.which, e.key, sec);
         generated.setAttribute('value', reference);

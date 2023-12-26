@@ -11,7 +11,7 @@ class CreateTemplatesTable
 			`uuid` varchar(250) not null,
 			`titulo` varchar(250) not null,
 			`autor` varchar(250) not null,
-			`referencia` varchar(250) not null,
+			`referencia` varchar(250) not null unique,
 			`editar` enum('YES', 'NO') not null,
 			`status` enum('Grátis', 'Pago') not null,
 			`preco` decimal(10.2) not null default 0.00,
