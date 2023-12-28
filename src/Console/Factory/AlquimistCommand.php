@@ -319,13 +319,17 @@ class AlquimistCommand
             $inverted_actions[] = $action;
         }
 
+        $countUp = 0;
+
         for ($i = count($inverted_actions) - 1; $i >= 0; $i--) {
-            $filename = pathinfo($migrations[$i], PATHINFO_FILENAME);
+            $filename = pathinfo($migrations[$countUp], PATHINFO_FILENAME);
+
             echo "\033[0;32mMigrating: $filename\033[0m" . PHP_EOL;
             sleep(date('s')/60);
             $inverted_actions[$i]->up();
             echo "\033[0;33mMigrated: $filename (" . date('m:s') . "ms)\033[0m" . PHP_EOL;
             sleep(date('s')/60);
+            $countUp++;
         }
 
         $db_seeder = new DatabaseSeeders();

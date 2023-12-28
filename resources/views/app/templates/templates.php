@@ -48,20 +48,22 @@
                         </div>
                         <div class="tbody">
                             <?php if (count($templates) > 0) : ?>
-                                <div class="trow">
-                                    <div class="tdata col-1"><?= $i + 1 ?></div>
-                                    <div class="tdata col-3">Titulo do template</div>
-                                    <div class="tdata col-2">Landing Page</div>
-                                    <div class="tdata col-1">Sílica</div>
-                                    <div class="tdata col-1">Grátis</div>
-                                    <div class="tdata col-1"><?= $i ?>.00</div>
-                                    <div class="tdata col-1">2023-12-10</div>
-                                    <div class="tdata col-2">
-                                        <a href=""> <i class="bi bi-eye"></i> </a>
-                                        <a href=""> <i class="bi bi-pencil-square"></i> </a>
-                                        <a href=""> <i class="bi bi-trash"></i> </a>
+                                <?php foreach ($templates as $template) : ?>
+                                    <div class="trow">
+                                        <div class="tdata col-1"><?= $template->template_id ?></div>
+                                        <div class="tdata col-3"><?= $template->titulo ?></div>
+                                        <div class="tdata col-2"><?= $template->tipo ?></div>
+                                        <div class="tdata col-1"><?= $template->autor ?></div>
+                                        <div class="tdata col-1"><?= $template->status ?></div>
+                                        <div class="tdata col-1"><?= $template->preco ?></div>
+                                        <div class="tdata col-1"><?= $template->created_at ?></div>
+                                        <div class="tdata col-2">
+                                            <a href=""> <i class="bi bi-eye"></i> </a>
+                                            <a href=""> <i class="bi bi-pencil-square"></i> </a>
+                                            <a href=""> <i class="bi bi-trash"></i> </a>
+                                        </div>
                                     </div>
-                                </div>
+                                <?php endforeach; ?>
                             <?php else : ?>
                                 <div class="trow">
                                     <div class="tdata col-12">Sem templates disponíveis. <a href="<?= route('templates.add') ?>" class="no-style">criar</a> </div>

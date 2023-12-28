@@ -63,6 +63,12 @@
             </a>
         </div>
 
+        <div class="mnav-item <?= request()->path() == '/templates/tipo' ? 'active' : '' ?>">
+            <a href="<?= route('templates.categoria') ?>" class="mnav-link">
+                <span>Categorias</span>
+            </a>
+        </div>
+
         <div class="mnav-item <?= request()->path() == '/templates/add' ? 'active' : '' ?>">
             <a href="<?= route('templates.add') ?>" class="mnav-link">
                 <span class="bi-plus">Adcionar</span>

@@ -32,7 +32,7 @@ class Session
         //session_save_path(__DIR__ . '/');
         session_start();
         session_register_shutdown();*/
-        session_write_close();
+        /*session_write_close();
 
         session_cache_expire(0);
         session_start([
@@ -41,7 +41,7 @@ class Session
         ]);
 
 
-        session_gc();
+        session_gc();*/
 
         //var_dump(ini_get('session.cookie_lifetime'));
         //var_dump($_COOKIE);exit;

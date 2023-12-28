@@ -20,7 +20,7 @@ class templates extends Controller
 
     public function listar_todos()
     {
-        $templates = DB::table('templates')->get();
+        $templates = DB::raw('select t.*, (select tipo_template from tipo_templates where tipo_template_id = t.tipo_template_id) as tipo from templates as t');
 
         return view('Todos os template:app.templates.templates', compact('templates'));
     }
