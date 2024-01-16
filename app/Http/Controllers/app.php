@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Ramsey\Uuid\Uuid;
 use Sienekib\Mehael\Database\Factory\DB;
+use Sienekib\Mehael\Http\Request;
 
 class app extends Controller
 {
+    public function testing(Request  $request)
+    {
+        dd($_FILES);
+    }
+    
     public function index()
     {
         

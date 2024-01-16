@@ -6,9 +6,9 @@ use PDO;
 use Sienekib\Mehael\Database\Concerns\Connection;
 use Sienekib\Mehael\Http\Request;
 use Sienekib\Mehael\Http\Response;
-use Sienekib\Mehael\Support\Session;
 use Sienekib\Mehael\Router\Anotation\Route;
 use Sienekib\Mehael\Exceptions\Whoops;
+use Sienekib\Mehael\Support\Extensions;
 
 class Application
 {
@@ -17,7 +17,6 @@ class Application
 	private Route $route;
 	private Connection $connection;
 	private $whoops = null;
-	protected Session $session;
 
 	public function __construct()
 	{
@@ -26,23 +25,17 @@ class Application
 		$this->route = new Route($this->request, $this->response);
 		$this->connection = new Connection();
 		$this->whoops = Whoops::lookUp();
-		$this->session = session();
+		Extensions::load();
 	}
 
 	public function start()
 	{
 		try {
-			$this->session->start();
 			$this->connection->initDBConnection();
 			$this->route->dispatch();
 			session()->destroyFlash();
 		} catch (\Exception $e) {
 			$this->whoops->handleException($e);
 		}
-	}
-
-	public function __get($property)
-	{
-		return $this->$property ?? null;
 	}
 }

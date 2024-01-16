@@ -17,17 +17,13 @@ Route::add('POST', '/register', [authentication::class, 'criar_conta']);
 
 Route::prefix('templates')->group('auth:authorize', function() {
     Route::add('GET', '/list', [templates::class, 'listar_todos']);
+    Route::add('GET', '/re/(res:alpha)', [templates::class, 'response_front']);
     Route::add('GET', '/add', [templates::class, 'add_template']);
     Route::add('POST', '/create', [templates::class, 'store']);
     Route::add('GET', '/edit', [templates::class, 'update']);
     Route::add('GET', '/categoria', [templates::class, 'catergorias']);
 });
 
-Route::group('auth:authorize', function() {
-    Route::add('GET', '/user/(id:numeric)', [contas::class, 'index']);
-    Route::add('GET', '/template/create', [TemplateController::class, 'index']);
-    Route::add('GET', '/template/add', [TemplateController::class, 'create']);
-    Route::add('GET', '/parceiros', [contas::class, 'parceiros']);
-});
+
 
 Route::add('GET', '/logout', [authentication::class, 'logout']);

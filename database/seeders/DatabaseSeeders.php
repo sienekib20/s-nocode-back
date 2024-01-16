@@ -12,6 +12,7 @@ class DatabaseSeeders extends Seeder
             // Coloque aqui os teus seeders
             users::class,
             tipo_templates::class,
+            tipo_contas::class,
         ]);
     }
 

@@ -4,54 +4,16 @@ namespace Sienekib\Mehael\Support;
 
 class Session
 {
-    private static $instance = null;
-
-    public function __construct()
-    {
-        //self::destroy();
-    }
-
-    public static function getInstance()
-    {
-        if (is_null(static::$instance)) {
-            static::$instance = new Session();
-        }
-        return static::$instance;
-    }
-
     public static function start()
     {
-
-        /*\ini_set('session.gc_lifetime', '1800'); 
-        \ini_set('session.cookie_lifetime', 0);
-        //\ini_set('session.cookie_secure', '1');
-        \ini_set('session.cookie_httponly', '1');
-        \ini_set('session.use_trans_sid', '0');
-        //session_cache_limiter('private');
-        \ini_set('session.use_cookies', 'true');
-        //session_save_path(__DIR__ . '/');
-        session_start();
-        session_register_shutdown();*/
-        /*session_write_close();
-
-        session_cache_expire(0);
-        session_start([
-            'gc_maxlifetime' => 0,
-            'cookie_lifetime' => 0,
-        ]);
-
-
-        session_gc();*/
-
-        //var_dump(ini_get('session.cookie_lifetime'));
-        //var_dump($_COOKIE);exit;
-        /*ini_set('session.gc_maxlifetime', 1800); 
-        ini_set('session.use_only_cookies', 1);
-        //ini_set('session.cookie_lifetime', -1); // ou um valor específico em segundos
-    
-        if (session_status() == PHP_SESSION_NONE) {
+        /*if (session_status() == PHP_SESSION_NONE) {
+             
+            
+            session_cache_limiter(false);
             session_start();
         }*/
+
+        // 7200 -> 120 min || 1800 -> 30 minutos
     }
 
     public static function has(string $key)
@@ -105,7 +67,7 @@ class Session
 
     public function regenerateId()
     {
-        //session_regenerate_id();
+        session_regenerate_id();
     }
 
     public static function get(string $key)
@@ -120,7 +82,6 @@ class Session
                 self::remove($key);
             }
         }
-        $_SESSION = array();
     }
 
     public static function destroyFlash()

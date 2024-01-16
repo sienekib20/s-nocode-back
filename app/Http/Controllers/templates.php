@@ -25,6 +25,11 @@ class templates extends Controller
         return view('Todos os template:app.templates.templates', compact('templates'));
     }
 
+    public function response_front(Request $request)
+    {
+        dd($request);
+    }
+
     public function add_template()
     {
 
@@ -37,13 +42,31 @@ class templates extends Controller
 
     public function store(Request $request)
     {
+        /*if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $arquivo_zip = $_FILES["zip"]["tmp_name"];
+            $destino = storage_path(); // Substitua pelo caminho real
 
-        $build_file_template = "<style>{$request->css}</style>";
-        $build_file_template .= $request->html;
-        $build_file_template .= "<script>{$request->js}</script>";
-
-        var_dump($build_file_template);
-        exit;
+            //dd(pathinfo($_FILES["zip"]["name"], PATHINFO_EXTENSION));
+            //dd($_FILES["zip"]["name"]);
+            
+            // Verifica se o arquivo é um arquivo zip
+            if (pathinfo($_FILES["zip"]["name"], PATHINFO_EXTENSION) == 'zip') {
+                // Descompacta o arquivo zip
+                $zip = new \ZipArchive;
+                if ($zip->open($arquivo_zip) === TRUE) {
+                    //dd($zip->filename);
+                    $zip->extractTo($destino);
+                    $zip->close();
+                    echo 'Arquivo zip descompactado com sucesso!';
+                } else {
+                    echo 'Falha ao descompactar o arquivo zip.';
+                }
+            } else {
+                echo 'Por favor, envie um arquivo zip válido.';
+            }
+        }*/
+        
+        return 0;
 
         $fileId = DB::table('files')->insertId([]); // inserir file
 

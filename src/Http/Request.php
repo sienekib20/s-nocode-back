@@ -30,11 +30,22 @@ class Request
         }
     }
 
-    public function base64File(string $filename)
+    /*public function base64File(string $filename)
     {
         if ($this->$filename !== null) {
             $base64 = $this->$filename;
             $file = explode('base64', $base64)[1];
+            return base64_decode($file);
+        }
+        return null;
+    }*/
+
+    public function base64File(string $filename)
+    {
+        if ($this->$filename !== null) {
+            $base64 = $this->$filename;
+            // Remova a parte 'data:application/zip;base64,' do início da string
+            $file = preg_replace('/^data:application\/zip;base64,/', '', $base64);
             return base64_decode($file);
         }
         return null;
@@ -47,6 +58,11 @@ class Request
         }
 
         $extension = explode('.', $this->$filename)[1];
+
+        if ($type == 'zip') {
+            
+            return $extension;
+        }
 
         return $this->matchExtension($extension, $type) ? $extension : null;
     }
@@ -88,13 +104,13 @@ class Request
 
         if ($this->method() == 'GET') {
             foreach ($_GET as $key => $value) {
-                $this->data[$key] = strip_tags($value);
+                $this->data[$key] = ($this->isXmlHttpRequest()) ? $value : strip_tags($value);
             }
         }
 
         if ($this->method() == 'POST') {
             foreach ($_POST as $key => $value) {
-                $this->data[$key] = strip_tags($value);
+                $this->data[$key] = ($this->isXmlHttpRequest()) ? $value : strip_tags($value);
             }
         }
 
@@ -104,5 +120,10 @@ class Request
     public function __get($key)
     {
         return $this->data[$key] ?? null;
+    }
+
+    private function isXmlHttpRequest()
+    {
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
     }
 }
