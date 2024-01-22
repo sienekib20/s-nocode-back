@@ -27,7 +27,7 @@ class templates extends Controller
 
     public function response_front(Request $request)
     {
-        dd($request);
+        //dd($request);
     }
 
     public function add_template()

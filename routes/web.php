@@ -15,9 +15,9 @@ Route::add('POST', '/login_entrar', [authentication::class, 'login_entrar']);
 Route::add('GET', '/register', [authentication::class, 'register']);
 Route::add('POST', '/register', [authentication::class, 'criar_conta']);
 
-Route::prefix('templates')->group('auth:authorize', function() {
+Route::prefix('templates')->group('auth:authorize', function () {
     Route::add('GET', '/list', [templates::class, 'listar_todos']);
-    Route::add('GET', '/re/(res:alpha)', [templates::class, 'response_front']);
+    //Route::add('GET', '/re/(res:alpha)', [templates::class, 'response_front']);
     Route::add('GET', '/add', [templates::class, 'add_template']);
     Route::add('POST', '/create', [templates::class, 'store']);
     Route::add('GET', '/edit', [templates::class, 'update']);

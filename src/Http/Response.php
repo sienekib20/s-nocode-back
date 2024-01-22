@@ -15,11 +15,11 @@ class Response
        $this->setHeader('Access-Control-Allow-Headers', '*');
        $this->setHeader('Access-Control-Allow-Credentials', 'true');
 
-       if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+       /*if (request()->method() === 'OPTIONS') {
            $this->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
            $this->applyHeaders();
            exit;
-       }
+       }*/
    }
 
 

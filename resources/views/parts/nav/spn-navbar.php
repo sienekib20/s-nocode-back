@@ -15,7 +15,7 @@
 
             <div class="spn-nav-item">
                 <a href="" class="nav-link">
-                    <?php if (session()->get('user') == null) : ?>
+                    <?php if (session()->get('user_id') == null) : ?>
                         <small class="text">Username</small>
                     <?php else : ?>
                         <small class="text">Óla, <?= session()->get('user') ?></small>

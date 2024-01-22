@@ -10,7 +10,7 @@ class app extends Controller
 {
     public function testing(Request  $request)
     {
-        dd($_FILES);
+        //dd($_FILES);
     }
     
     public function index()
@@ -22,7 +22,7 @@ class app extends Controller
         $em_uso = DB::table('temp_parceiros')->get();
         $parceiros = DB::table('parceiros')->get();
 
-        return view('home:app.index', compact('templates', 'em_uso', 'parceiros'));
+        return view('Inicio:app.index', compact('templates', 'em_uso', 'parceiros'));
     }
 
     public function create_template()

@@ -222,3 +222,85 @@
         alert.play();
     }*/
 </script>
+
+<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Convert</title>
+</head>
+<body>
+    <h1>Upload and Convert</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="file">Choose a ZIP file:</label>
+        <input type="file" id="file" name="file" accept=".zip" required>
+        <br>
+        <button type="button" onclick="uploadAndConvert()">Upload and Convert</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        function uploadAndConvert() {
+            const form = document.getElementById('uploadForm');
+            const formData = new FormData(form);
+
+            fetch('convert.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Exibir o resultado na div result
+                document.getElementById('result').innerText = data.result;
+            })
+            .catch(error => console.error('Erro:', error));
+        }
+    </script>
+</body>
+</html>
+
+
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
+        $uploadedFile = $_FILES['file'];
+    
+        // Verifica se é um arquivo ZIP
+        $fileInfo = pathinfo($uploadedFile['name']);
+        if ($fileInfo['extension'] === 'zip') {
+            // Diretório de destino para o upload
+            $uploadDir = 'uploads/';
+    
+            // Move o arquivo para o diretório de destino
+            $targetFile = $uploadDir . $fileInfo['basename'];
+            move_uploaded_file($uploadedFile['tmp_name'], $targetFile);
+    
+            // Lê o conteúdo do arquivo ZIP e converte para base64
+            $zip = new ZipArchive;
+            if ($zip->open($targetFile) === TRUE) {
+                $index = 0; // Assume que há pelo menos um arquivo no ZIP
+                $contents = $zip->getFromIndex($index);
+                $zip->close();
+    
+                // Converte para base64
+                $base64Content = base64_encode($contents);
+    
+                // Retorna o resultado
+                echo json_encode(['result' => $base64Content]);
+    
+                // Exclui o arquivo ZIP após a conversão
+                unlink($targetFile);
+    
+            } else {
+                echo json_encode(['error' => 'Erro ao abrir o arquivo ZIP.']);
+            }
+        } else {
+            echo json_encode(['error' => 'O arquivo deve ser um ZIP.']);
+        }
+    } else {
+        echo json_encode(['error' => 'Requisição inválida.']);
+    }
+    ?>
+    
+?>

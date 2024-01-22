@@ -11,9 +11,6 @@ trait PathBuilder
     {
         $path = explode('/', ltrim($route, '/'));
         $parameters = [];
-            
-        echo '<pre>';
-        var_dump($route);
 
         if (Wildcards::foundWildcards($route)) {
             $route = "/$path[0]/";
