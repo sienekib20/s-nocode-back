@@ -14,138 +14,135 @@
 
 <body>
 
-<div class="spn-wrapper">
-    <?= parts('nav.spn-navbar') ?>
+    <div class="spn-wrapper">
+        <?= parts('nav.spn-navbar') ?>
 
-    <div class="card-section">
-        <div class="card-section-header">
-            <div class="spn-container">
-                <div class="title">
-                    <span class="default">Adcionar Template</span>
-                    <small class="tw-muted">Carrega os dados do teu template</small>
+        <div class="card-section">
+            <div class="card-section-header">
+                <div class="spn-container">
+                    <div class="title">
+                        <span class="default">Adcionar Template</span>
+                        <small class="tw-muted">Carrega os dados do teu template</small>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="spn-container">
-        <div class="title">
-            <span class="default">Após ter inserido o título para o seu template copia a referência gerada, o que será o nome para o seu arquivo zipado. <br> Caso contrário, o seu template não será reconhecido</span>
-        </div>
-    </div>
-
-
-    <div class="card-section">
-        <div class="card-section-contain">
-            <div class="spn-container">
-                <form action="http://localhost:8000/salvando" method="POST" class="spn-form" id="add-template-form"
-                      enctype="multipart/form-data">
-                    <div class="spn-form-row">
-                        <div class="spn-form-item">
-                            <input type="text" name="titulo" id="title" class="form-input" autocomplete="off" required>
-                            <span class="form-label">Título</span>
-                        </div>
-                        <div class="spn-form-item">
-                            <input type="text" name="referencia" id="generated" class="form-input"
-                                   value="xsn_name" readonly required>
-                            <small class="form-label">Referência gerada</small>
-                            <small class="bi-copy"></small>
-                        </div>
-                    </div>
-                    <div class="spn-form-row">
-                        <div class="spn-form-"></div>
-                        <div class="spn-form-item">
-                            <input type="text" name="descricao" id="descricao" class="form-input" autocomplete="off"
-                                   required>
-                            <span class="form-label">Descrição</span>
-                        </div>
-                    </div>
-
-                    <div class="spn-form-row">
-                        <div class="spn-form-item">
-                            <select name="editar" id="editable" class="form-input">
-                                <option value="YES">Editável</option>
-                                <option value="NO">Não editável</option>
-                            </select>
-                            <span class="form-label">Nível de acesso</span>
-                        </div>
-                        <div class="spn-form-item">
-                            <select name="tipo_template" id="tipo" class="form-input">
-                                <?php foreach ($tipo as $t) : ?>
-                                    <option value="<?= $t->tipo_template_id ?>"><?= $t->tipo_template ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <span class="form-label">Tipo template</span>
-                        </div>
-                    </div>
-
-                    <div class="spn-form-row">
-                        <div class="spn-form-item">
-                            <select name="status" id="paystatus" class="form-input">
-                                <option value="Grátis">Grátis</option>
-                                <option value="Pago">Pago</option>
-                            </select>
-                            <span class="form-label">Status</span>
-                        </div>
-                        <div class="spn-form-item">
-                            <input type="text" name="preco" id="preco" class="form-input" autocomplete="off"
-                                   value="0.00" disabled required>
-                            <span class="form-label">Valor</span>
-                        </div>
-                    </div>
-                    <div class="spn-form-row">
-
-                        <!--<div class="spn-form-item">
-                            <label id="load_code_viewer" class="form-label">Código</label>
-                        </div>-->
-                        <div class="spn-form-item">
-                            <input type="file" id="zip" name="zip" accept=".zip,.rar" hidden>
-                            <label for="zip" class="form-label">Zip file</label>
-                        </div>
-                        <div class="spn-form-item">
-                            <input type="file" id="cover" name="cover" accept="image/*" multiple hidden>
-                            <label for="cover" class="form-label">+ Capa</label>
-                        </div>
-
-                    </div>
-
-                    <div class="spn-form-row">
-                        <!--<div class="spn-form-item">
-                            <input type="file" id="temp_pages" name="páginas" accept=".php,.html" multiple hidden>
-                            <label for="temp_pages" class="form-label">+ Páginas</label>
-                        </div>-->
-                    </div>
-
-                    <div class="spn-form-row">
-                        <div></div>
-                        <!--<div class="spn-form-item">
-                            <input type="file" id="temp_images" name="temp_images[]" accept="image/*" multiple hidden>
-                            <label for="temp_images" class="form-label">+ imagens</label>
-                        </div>-->
-                    </div>
-
-                    <div class="spn-form-row">
-                        <div class="spn-form-btn">
-                            <!--<button class="form-btn" id="btn-add-template">adicionar</button>-->
-                            <button class="form-btn">adicionar</button>
-                            <button type="reset" class="form-btn">repôr</button>
-                        </div>
-                    </div>
-
-
-                    <?= parts('code.spn-code-viewer') ?>
-
-                </form>
-
-                <div class="spn-give-space"></div>
-
+        <div class="spn-container">
+            <div class="title">
+                <span class="default">Após ter inserido o título para o seu template copia a referência gerada, o que será o nome para o seu arquivo zipado. <br> Caso contrário, o seu template não será reconhecido</span>
             </div>
         </div>
 
 
-    </div> <!--/.sp-wrapper-->
+        <div class="card-section">
+            <div class="card-section-contain">
+                <div class="spn-container">
+                    <!-- http://localhost:8000/salvando -->
+                    <form action="" method="POST" class="spn-form" id="add-template-form" enctype="multipart/form-data">
+                        <div class="spn-form-row">
+                            <div class="spn-form-item">
+                                <input type="text" name="titulo" id="title" class="form-input" autocomplete="off" required>
+                                <span class="form-label">Título</span>
+                            </div>
+                            <div class="spn-form-item">
+                                <input type="text" name="referencia" id="generated" class="form-input" value="xsn_name" readonly required>
+                                <small class="form-label">Referência gerada</small>
+                                <small class="bi-copy"></small>
+                            </div>
+                        </div>
+                        <div class="spn-form-row">
+                            <div class="spn-form-"></div>
+                            <div class="spn-form-item">
+                                <input type="text" name="descricao" id="descricao" class="form-input" autocomplete="off" required>
+                                <span class="form-label">Descrição</span>
+                            </div>
+                        </div>
 
-    <?= parts('alerts.alert') ?>
+                        <div class="spn-form-row">
+                            <div class="spn-form-item">
+                                <select name="editar" id="editable" class="form-input">
+                                    <option value="YES">Editável</option>
+                                    <option value="NO">Não editável</option>
+                                </select>
+                                <span class="form-label">Nível de acesso</span>
+                            </div>
+                            <div class="spn-form-item">
+                                <select name="tipo_template" id="tipo" class="form-input">
+                                    <?php foreach ($tipo as $t) : ?>
+                                        <option value="<?= $t->tipo_template_id ?>"><?= $t->tipo_template ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <span class="form-label">Tipo template</span>
+                            </div>
+                        </div>
+
+                        <div class="spn-form-row">
+                            <div class="spn-form-item">
+                                <select name="status" id="paystatus" class="form-input">
+                                    <option value="Grátis">Grátis</option>
+                                    <option value="Pago">Pago</option>
+                                </select>
+                                <span class="form-label">Status</span>
+                            </div>
+                            <div class="spn-form-item">
+                                <input type="text" name="preco" id="preco" class="form-input" autocomplete="off" value="0.00" disabled required>
+                                <span class="form-label">Valor</span>
+                            </div>
+                        </div>
+                        <div class="spn-form-row">
+
+                            <!--<div class="spn-form-item">
+                            <label id="load_code_viewer" class="form-label">Código</label>
+                        </div>-->
+                            <div class="spn-form-item">
+                                <input type="file" id="zip" name="zip" accept=".zip,.rar" hidden>
+                                <label for="zip" class="form-label">Zip file</label>
+                            </div>
+                            <div class="spn-form-item">
+                                <input type="file" id="cover" name="cover" accept="image/*" multiple hidden>
+                                <label for="cover" class="form-label">+ Capa</label>
+                            </div>
+
+                        </div>
+
+                        <div class="spn-form-row">
+                            <!--<div class="spn-form-item">
+                            <input type="file" id="temp_pages" name="páginas" accept=".php,.html" multiple hidden>
+                            <label for="temp_pages" class="form-label">+ Páginas</label>
+                        </div>-->
+                        </div>
+
+                        <div class="spn-form-row">
+                            <div></div>
+                            <!--<div class="spn-form-item">
+                            <input type="file" id="temp_images" name="temp_images[]" accept="image/*" multiple hidden>
+                            <label for="temp_images" class="form-label">+ imagens</label>
+                        </div>-->
+                        </div>
+
+                        <div class="spn-form-row">
+                            <div class="spn-form-btn">
+                                <button class="form-btn" id="btn-add-template">adicionar</button>
+                                <!--<button class="form-btn">adicionar</button>-->
+                                <button type="reset" class="form-btn">repôr</button>
+                            </div>
+                        </div>
+
+
+                        <?= parts('code.spn-code-viewer') ?>
+
+                    </form>
+
+                    <div class="spn-give-space"></div>
+
+                </div>
+            </div>
+
+
+        </div> <!--/.sp-wrapper-->
+
+        <?= parts('alerts.alert') ?>
 
 </body>
 
@@ -157,7 +154,6 @@
 
 <script src="<?= asset('js/add-template/index.js') ?>"></script>
 <script>
-
     $('#load_code_viewer').click(e => {
         $('.spn-code-viewer').addClass('active');
     });
@@ -190,7 +186,7 @@
         template_name = (template_name.length == 0) ? 'name' : template_name;
 
         /*generated = "sn_00" + seconds + "_" + template_name + "_tmp";*/
-        generated = "xsn"+ "_" + template_name; 
+        generated = "xsn" + "_" + template_name;
 
         return generated;
     }
@@ -222,85 +218,3 @@
         alert.play();
     }*/
 </script>
-
-<?php
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload and Convert</title>
-</head>
-<body>
-    <h1>Upload and Convert</h1>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <label for="file">Choose a ZIP file:</label>
-        <input type="file" id="file" name="file" accept=".zip" required>
-        <br>
-        <button type="button" onclick="uploadAndConvert()">Upload and Convert</button>
-    </form>
-    <div id="result"></div>
-
-    <script>
-        function uploadAndConvert() {
-            const form = document.getElementById('uploadForm');
-            const formData = new FormData(form);
-
-            fetch('convert.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Exibir o resultado na div result
-                document.getElementById('result').innerText = data.result;
-            })
-            .catch(error => console.error('Erro:', error));
-        }
-    </script>
-</body>
-</html>
-
-
-    <?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
-        $uploadedFile = $_FILES['file'];
-    
-        // Verifica se é um arquivo ZIP
-        $fileInfo = pathinfo($uploadedFile['name']);
-        if ($fileInfo['extension'] === 'zip') {
-            // Diretório de destino para o upload
-            $uploadDir = 'uploads/';
-    
-            // Move o arquivo para o diretório de destino
-            $targetFile = $uploadDir . $fileInfo['basename'];
-            move_uploaded_file($uploadedFile['tmp_name'], $targetFile);
-    
-            // Lê o conteúdo do arquivo ZIP e converte para base64
-            $zip = new ZipArchive;
-            if ($zip->open($targetFile) === TRUE) {
-                $index = 0; // Assume que há pelo menos um arquivo no ZIP
-                $contents = $zip->getFromIndex($index);
-                $zip->close();
-    
-                // Converte para base64
-                $base64Content = base64_encode($contents);
-    
-                // Retorna o resultado
-                echo json_encode(['result' => $base64Content]);
-    
-                // Exclui o arquivo ZIP após a conversão
-                unlink($targetFile);
-    
-            } else {
-                echo json_encode(['error' => 'Erro ao abrir o arquivo ZIP.']);
-            }
-        } else {
-            echo json_encode(['error' => 'O arquivo deve ser um ZIP.']);
-        }
-    } else {
-        echo json_encode(['error' => 'Requisição inválida.']);
-    }
-    ?>
-    
-?>

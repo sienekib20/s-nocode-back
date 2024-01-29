@@ -65,10 +65,14 @@ class templates extends Controller
                 echo 'Por favor, envie um arquivo zip válido.';
             }
         }*/
-        
-        return 0;
 
-        $fileId = DB::table('files')->insertId([]); // inserir file
+        //$file = $_FILES['zip']['name'];
+        
+        echo json_encode($_FILES);
+
+        exit;
+
+        /*$fileId = DB::table('files')->insertId([]); // inserir file
 
         $result = DB::table('templates')->insert(['titulo' => $request->temp_title, 'referencia' => $request->generated, 'tipo_template_id' => $request->temp_type, 'editar' => $request->temp_editable, 'descricao' => $request->temp_description, 'preco' => $request->temp_price == null ? '0.00' : $request->temp_price, 'status' => $request->temp_payment_status]);
 
@@ -77,7 +81,7 @@ class templates extends Controller
             return redirect()->route('rota.de.redirecionamento');
         }
 
-        return redirect()->route('rota.de.redirecionamento');
+        return redirect()->route('rota.de.redirecionamento');*/
     }
 
     // Pega um registo(s) na DB

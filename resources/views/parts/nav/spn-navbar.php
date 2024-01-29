@@ -18,7 +18,7 @@
                     <?php if (session()->get('user_id') == null) : ?>
                         <small class="text">Username</small>
                     <?php else : ?>
-                        <small class="text">Óla, <?= session()->get('user') ?></small>
+                        <small class="text">Óla, <?= session()->get('username') ?></small>
                     <?php endif; ?>
                 </a>
             </div>
@@ -65,7 +65,7 @@
 
         <div class="mnav-item <?= request()->path() == '/templates/tipo' ? 'active' : '' ?>">
             <a href="<?= route('templates.categoria') ?>" class="mnav-link">
-                <span>Categorias</span>
+                <span>Categorias template</span>
             </a>
         </div>
 
@@ -78,6 +78,24 @@
         <div class="mnav-item <?= request()->path() == '/parceiros' ? 'active' : '' ?>">
             <a href="<?= route('parceiros') ?>" class="mnav-link">
                 <span>Parceiros</span>
+            </a>
+        </div>
+
+        <div class="mnav-item <?= request()->path() == '/parceiros' ? 'active' : '' ?>">
+            <a href="<?= route('parceiros') ?>" class="mnav-link">
+                <span>Pacotes aderidos</span>
+            </a>
+        </div>
+
+        <div class="mnav-item <?= request()->path() == '/parceiros' ? 'active' : '' ?>">
+            <a href="<?= route('parceiros') ?>" class="mnav-link">
+                <span>Mensagem clientes</span>
+            </a>
+        </div>
+
+        <div class="mnav-item <?= request()->path() == '/parceiros' ? 'active' : '' ?>">
+            <a href="<?= route('parceiros') ?>" class="mnav-link">
+                <span>Pedidos</span>
             </a>
         </div>
 

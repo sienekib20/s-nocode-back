@@ -10,7 +10,7 @@ class Authorize
     {
         $restricted = Session::has('user_id');
 
-        if (! $restricted) {
+        if (!$restricted) {
 
             header('Location: /login');
             exit;
