@@ -27,9 +27,16 @@ class authentication extends Controller
 
         if (password_verify($request->password, $data->password)) {
 
+
             session()->set('username', $data->username);
             session()->set('user_id', $data->user_id); //->regenerateId();
 
+            if (session()->has('redirect_url')) {
+                $redirect_url = session()->get('redirect_url');
+                session()->remove('redirect_url');
+                return redirect()->route($redirect_url);
+            }
+            
             return redirect()->route('nocode');
         }
 
@@ -40,6 +47,6 @@ class authentication extends Controller
     public function logout()
     {
         session()->destroy();
-        return redirect()->route('nocode');
+        return redirect()->route('/');
     }
 }

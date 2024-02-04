@@ -5,145 +5,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= asset('css/component.css') ?>">
-    <link rel="stylesheet" href="<?= asset('css/bootstrap-icons.css') ?>">
-    <link rel="stylesheet" href="<?= asset('css/code-viewer.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/adminlte.min.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/fonts/font-awesome.min.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/fonts/bootstrap-icons.css') ?>">
     <script src="<?= asset('js/jquery-3.3.1.min.js') ?>"></script>
     <script src="<?= asset('js/image/load_replace.js') ?>"></script>
     <title>title</title>
 </head>
 
-<body>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+          <img class="animation__wobble" src="<?= asset('img/AdminLTELogo.png') ?>" alt="AdminLTELogo" height="60" width="60">
+        </div>
+        <?= parts('navbar') ?>
+        <?= parts('sidebar') ?>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+              <div class="container-fluid">
+                <div class="row mb-2">
+                  <div class="col-sm-6">
+                    <h1 class="m-0">Adicionar template</h1>
+                  </div><!-- /.col -->
+                  <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                      <li class="breadcrumb-item"><a href="#">Home</a></li>
+                      <li class="breadcrumb-item active">Adicionar</li>
+                    </ol>
+                  </div><!-- /.col -->
+                </div><!-- /.row -->
+              </div><!-- /.container-fluid -->
+            </div> <!--/.content-header-->
+            <section class="content">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-12">
+                                <form action="" method="POST" id="add-template-form" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="text" name="titulo" id="title" class="form-control" required placeholder="Titulo">
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="autor" class="form-control" placeholder="Autor" required>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-5">
+                                        <div class="col-6">
+                                            <select name="status" id="paystatus" class="form-control">
+                                                <option value="Grátis">Template Grátis</option>
+                                                <option value="Pago">Template Pago</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="preco" id="preco" class="form-control" autocomplete="off" placeholder="0.00" disabled required>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-5">
+                                        <div class="col-6">
+                                            <select name="editar" id="editable" class="form-control">
+                                                <option value="YES">Template Editável</option>
+                                                <option value="NO">Não editável</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <select name="tipo_template" id="tipo" class="form-control">
+                                                <?php foreach ($tipo as $t) : ?>
+                                                    <option value="<?= $t->tipo_template_id ?>"><?= $t->tipo_template ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-5">
+                                        <div class="col-6">
+                                            <input type="file" id="zip" name="zip" accept=".zip,.rar" hidden>
+                                            <label for="zip" class="form-control">Carregar template</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="file" id="cover" name="cover" accept="image/*" multiple hidden>
+                                            <label for="cover" class="form-control">Carregar Imagem de Capa</label>
+                                        </div>
 
-    <div class="spn-wrapper">
-        <?= parts('nav.spn-navbar') ?>
-
-        <div class="card-section">
-            <div class="card-section-header">
-                <div class="spn-container">
-                    <div class="title">
-                        <span class="default">Adcionar Template</span>
-                        <small class="tw-muted">Carrega os dados do teu template</small>
+                                    </div>
+                                    <div class="row mt-5">
+                                        <div class="col-6"></div>
+                                        <div class="col-6">
+                                            <textarea name="descricao" name="descricao" id="descricao" class="form-control" placeholder="Descricao" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-5">
+                                        <div class="col-6">
+                                            <button class="btn btn-danger btn-block" id="btn-add-template">adicionar</button>
+                                        </div>
+                                    </div>
+                                </form> <!--/.form-->
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="spn-container">
-            <div class="title">
-                <span class="default">Após ter inserido o título para o seu template copia a referência gerada, o que será o nome para o seu arquivo zipado. <br> Caso contrário, o seu template não será reconhecido</span>
-            </div>
-        </div>
-
-
-        <div class="card-section">
-            <div class="card-section-contain">
-                <div class="spn-container">
-                    <!-- http://localhost:8000/salvando -->
-                    <form action="" method="POST" class="spn-form" id="add-template-form" enctype="multipart/form-data">
-                        <div class="spn-form-row">
-                            <div class="spn-form-item">
-                                <input type="text" name="titulo" id="title" class="form-input" autocomplete="off" required>
-                                <span class="form-label">Título</span>
-                            </div>
-                            <div class="spn-form-item">
-                                <input type="text" name="referencia" id="generated" class="form-input" value="xsn_name" readonly required>
-                                <small class="form-label">Referência gerada</small>
-                                <small class="bi-copy"></small>
-                            </div>
-                        </div>
-                        <div class="spn-form-row">
-                            <div class="spn-form-"></div>
-                            <div class="spn-form-item">
-                                <input type="text" name="descricao" id="descricao" class="form-input" autocomplete="off" required>
-                                <span class="form-label">Descrição</span>
-                            </div>
-                        </div>
-
-                        <div class="spn-form-row">
-                            <div class="spn-form-item">
-                                <select name="editar" id="editable" class="form-input">
-                                    <option value="YES">Editável</option>
-                                    <option value="NO">Não editável</option>
-                                </select>
-                                <span class="form-label">Nível de acesso</span>
-                            </div>
-                            <div class="spn-form-item">
-                                <select name="tipo_template" id="tipo" class="form-input">
-                                    <?php foreach ($tipo as $t) : ?>
-                                        <option value="<?= $t->tipo_template_id ?>"><?= $t->tipo_template ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <span class="form-label">Tipo template</span>
-                            </div>
-                        </div>
-
-                        <div class="spn-form-row">
-                            <div class="spn-form-item">
-                                <select name="status" id="paystatus" class="form-input">
-                                    <option value="Grátis">Grátis</option>
-                                    <option value="Pago">Pago</option>
-                                </select>
-                                <span class="form-label">Status</span>
-                            </div>
-                            <div class="spn-form-item">
-                                <input type="text" name="preco" id="preco" class="form-input" autocomplete="off" value="0.00" disabled required>
-                                <span class="form-label">Valor</span>
-                            </div>
-                        </div>
-                        <div class="spn-form-row">
-
-                            <!--<div class="spn-form-item">
-                            <label id="load_code_viewer" class="form-label">Código</label>
-                        </div>-->
-                            <div class="spn-form-item">
-                                <input type="file" id="zip" name="zip" accept=".zip,.rar" hidden>
-                                <label for="zip" class="form-label">Zip file</label>
-                            </div>
-                            <div class="spn-form-item">
-                                <input type="file" id="cover" name="cover" accept="image/*" multiple hidden>
-                                <label for="cover" class="form-label">+ Capa</label>
-                            </div>
-
-                        </div>
-
-                        <div class="spn-form-row">
-                            <!--<div class="spn-form-item">
-                            <input type="file" id="temp_pages" name="páginas" accept=".php,.html" multiple hidden>
-                            <label for="temp_pages" class="form-label">+ Páginas</label>
-                        </div>-->
-                        </div>
-
-                        <div class="spn-form-row">
-                            <div></div>
-                            <!--<div class="spn-form-item">
-                            <input type="file" id="temp_images" name="temp_images[]" accept="image/*" multiple hidden>
-                            <label for="temp_images" class="form-label">+ imagens</label>
-                        </div>-->
-                        </div>
-
-                        <div class="spn-form-row">
-                            <div class="spn-form-btn">
-                                <button class="form-btn" id="btn-add-template">adicionar</button>
-                                <!--<button class="form-btn">adicionar</button>-->
-                                <button type="reset" class="form-btn">repôr</button>
-                            </div>
-                        </div>
-
-
-                        <?= parts('code.spn-code-viewer') ?>
-
-                    </form>
-
-                    <div class="spn-give-space"></div>
-
-                </div>
-            </div>
-
-
-        </div> <!--/.sp-wrapper-->
-
-        <?= parts('alerts.alert') ?>
-
+            </section><!--/.content-->
+        </div><!--/.content-wrapper-->
+    </div> <!--/.wrapper-->
+    <?= parts('footer') ?>
 </body>
 
 </html>
@@ -153,68 +118,5 @@
 </div>
 
 <script src="<?= asset('js/add-template/index.js') ?>"></script>
-<script>
-    $('#load_code_viewer').click(e => {
-        $('.spn-code-viewer').addClass('active');
-    });
-
-    let template_name = '',
-        generated;
-    const sec = new Date().getMilliseconds();
-
-    document.querySelector('#title').addEventListener('keydown', (e) => {
-        const generated = document.querySelector('#generated');
-        const reference = gerar_referencia(e.which, e.key, sec);
-        generated.setAttribute('value', reference);
-    });
-
-    function gerar_referencia(value, key, seconds) {
-
-        if (value == 8 || value == 46) {
-            template_name = template_name.substr(0, template_name.length - 1);
-        }
-
-        if (value >= 65 && value <= 90) {
-
-            if (template_name == 'name') {
-                template_name = '';
-            }
-
-            template_name += key.toLowerCase();
-        }
-
-        template_name = (template_name.length == 0) ? 'name' : template_name;
-
-        /*generated = "sn_00" + seconds + "_" + template_name + "_tmp";*/
-        generated = "xsn" + "_" + template_name;
-
-        return generated;
-    }
-
-    /*document.querySelector('#continue-btn').addEventListener('click', (e) => {
-        e.preventDefault();
-        const generated = document.querySelector('[name="generated"]').value;
-        if (generated.length == 1) {
-
-            popup_contain.classList.add('active');
-
-            setTimeout(() => {
-                popup.classList.add('active');
-                popup_msg.innerText = '';
-                popup_title.innerText = '';
-                popup_msg.innerText = 'Precisas gerar uma referência antes de continuar';
-                popup_title.innerText = 'Aviso';
-                song_notification(popu_audio);
-
-            }, 100);
-            return 0;
-        }
-        selector('.minimize').classList.remove('minimize');
-        console.log(generated.length);
-    });
-
-    function song_notification(alert) {
-        alert.stopped = true;
-        alert.play();
-    }*/
-</script>
+<script src="<?= asset('js/bootstrap.bundle.min.js') ?>"></script>
+<script src="<?= asset('js/adminlte.js') ?>"></script>

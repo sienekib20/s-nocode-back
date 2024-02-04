@@ -2,87 +2,124 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/component.css?v=<?= time() ?>">
-    <link rel="stylesheet" href="/assets/css/bootstrap-icons.css">
-    <script src="/assets/js/jquery-3.3.1.min.js"></script>
-    <title>%title%</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="<?= asset('css/fonts/all-fonts.css') ?>">
+  <link rel="stylesheet" href="<?= asset('css/fonts/general-sans.css') ?>">
+  <link rel="stylesheet" href="<?= asset('css/component.css') ?>">
+  <link rel="stylesheet" href="<?= asset('css/adminlte.min.css') ?>">
+  <link rel="stylesheet" href="<?= asset('css/fonts/font-awesome.min.css') ?>">
+  <link rel="stylesheet" href="<?= asset('css/fonts/bootstrap-icons.css') ?>">
+
+  <title>%title%</title>
 </head>
 
-<body>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+      <img class="animation__wobble" src="<?= asset('img/AdminLTELogo.png') ?>" alt="AdminLTELogo" height="60" width="60">
+    </div>
 
-    <div class="spn-wrapper">
-        <?php require view_path() . '/parts/nav/spn-navbar.php' ?>
+    <?= parts('navbar') ?>
+    <?= parts('sidebar') ?>
 
-        <div class="card-section">
-            <div class="card-section-header">
-                <div class="spn-container">
-                    <div class="title">
-                        <span class="default">Overview</span>
-                        <small class="tw-muted">Informação geral</small>
-                    </div>
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-archive"></i></span>
 
-                    <form action="" class="form-filter has-icon-on-left">
-                        <small class="bi-search"></small>
-                        <input type="text" class="filter-input" placeholder="Pesquisar um template">
-                    </form>
+                <div class="info-box-content">
+                  <span class="info-box-text">Total templates</span>
+                  <span class="info-box-number"><?= count($templates) ?></span>
                 </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
             </div>
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-wifi"></i></span>
 
-            <div class="card-section-contain">
-
-                <div class="spn-container">
-
-                    <div class="card-section-row">
-                        <div class="template-item">
-                            <div class="template-info">
-                                <span class="name">Templates</span>
-                                <small class="tw-muted"><span class="owner"></span> </small>
-                                <div class="avaluate">
-                                    <small class="range">Total <span class="qtd"><?= count($templates) ?></span> </small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="template-item">
-                            <div class="template-info">
-                                <span class="name">Parceiros</span>
-                                <small class="tw-muted"><span class="owner"></span> </small>
-                                <div class="avaluate">
-                                    <small class="range">Total <span class="qtd"><?= count($parceiros) ?></span> </small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="template-item">
-                            <div class="template-info">
-                                <span class="name">Em uso</span>
-                                <small class="tw-muted"><span class="owner"></span> </small>
-                                <div class="avaluate">
-                                    <small class="range">Total <span class="qtd"><?= count($em_uso) ?></span> </small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <a href="/templates/add" class="template-add">
-                            <div class="add">
-                                <small class="bi-plus"></small>
-                                <small>Adicionar Template</small>
-                            </div>
-                        </a>
-
-
-                    </div>
-
+                <div class="info-box-content">
+                  <span class="info-box-text">Templates em uso</span>
+                  <span class="info-box-number"><?= count($em_uso) ?></span>
                 </div>
-
-
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
             </div>
+            <div class="clearfix hidden-md-up"></div>
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
 
+                <div class="info-box-content">
+                  <span class="info-box-text">Parceiros</span>
+                  <span class="info-box-number"><?= count($parceiros) ?></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Planos aderidos</span>
+                  <span class="info-box-number"><?= '0' ?></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+          </div>
         </div>
+      </section>
 
+    </div>
 
-    </div> <!--/.sp-wrapper-->
+    <?= parts('footer') ?>
+
+  </div>
+
 
 </body>
 
 </html>
+
+<!-- section(js) -->
+<script src="<?= asset('js/jquery-3.3.1.min.js') ?>"></script>
+<script src="<?= asset('js/bootstrap.bundle.min.js') ?>"></script>
+<script src="<?= asset('') ?>"></script>
+<script src="<?= asset('js/adminlte.js') ?>"></script>
+
+<!--   <a href="/templates/add" class="template-add">
+                            <div class="add">
+                                <small class="bi-plus"></small>
+                                <small>Adicionar Template</small>
+                            </div>
+                        </a> -->

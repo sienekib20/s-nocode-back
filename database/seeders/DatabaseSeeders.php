@@ -13,7 +13,9 @@ class DatabaseSeeders extends Seeder
             users::class,
             tipo_templates::class,
             tipo_contas::class,
-            pacotes::class
+            pacotes::class,
+            estado_pacotes::class,
+            urgencias::class,
         ]);
     }
 

@@ -4,88 +4,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/component.css?v=" <?= time() ?>>
-    <link rel="stylesheet" href="/assets/css/bootstrap-icons.css">
-    <script src="/assets/js/jquery-3.3.1.min.js"></script>
-    <title>
-        <?= 'Partner' ?>
-    </title>
+    <link rel="stylesheet" href="<?= asset('css/adminlte.min.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/fonts/font-awesome.min.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/fonts/bootstrap-icons.css') ?>">
+    <title>Templates</title>
 </head>
 
-<body>
-
-    <div class="spn-wrapper">
-        <?= parts('nav.spn-navbar') ?>
-
-        <div class="card-section">
-            <div class="card-section-header">
-                <div class="spn-container">
-                    <div class="title">
-                        <span class="default">Templates</span>
-                        <small class="tw-muted">Todos os templates criados</small>
-                    </div>
-
-                    <form action="" class="form-filter has-icon-on-left">
-                        <small class="bi-search"></small>
-                        <input type="text" class="filter-input" placeholder="Pesquisar um template">
-                    </form>
-                </div>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+          <img class="animation__wobble" src="<?= asset('img/AdminLTELogo.png') ?>" alt="AdminLTELogo" height="60" width="60">
+        </div>
+        <?= parts('navbar') ?>
+        <?= parts('sidebar') ?>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+              <div class="container-fluid">
+                <div class="row mb-2">
+                  <div class="col-sm-6">
+                    <h1 class="m-0">Templates</h1>
+                  </div><!-- /.col -->
+                  <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                      <li class="breadcrumb-item"><a href="<?= route('nocode') ?>" class="text-dark">Home</a></li>
+                      <li class="breadcrumb-item active">Tempates</li>
+                    </ol>
+                  </div><!-- /.col -->
+                </div><!-- /.row -->
+              </div><!-- /.container-fluid -->
             </div>
-            <div class="card-section-contain">
-                <div class="spn-container">
-                    <div class="dtable">
-                        <div class="thead">
-                            <div class="trow">
-                                <div class="tdata col-1">Id</div>
-                                <div class="tdata col-3">Template</div>
-                                <div class="tdata col-2">Tipo</div>
-                                <div class="tdata col-1">Autor</div>
-                                <div class="tdata col-1">Status</div>
-                                <div class="tdata col-1">Preço</div>
-                                <div class="tdata col-1">Criação</div>
-                                <div class="tdata col-2">Ação</div>
-                            </div>
-                        </div>
-                        <div class="tbody">
+            <section class="content">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12 col-12">
+                    <div class="card">
+                      <div class="card-body" style="overflow-x: auto;">
+                        <table class="table table-bordered">
+                          <thead class="bg-light">
+                            <tr>
+                              <td>#</td>
+                              <td>Template</td>
+                              <td>Categoria</td>
+                              <td>Autor</td>
+                              <td>Status</td>
+                              <td>Preço</td>
+                              <td>Criação</td>
+                              <td>Ação</td>
+                            </tr>
+                          </thead>
+                          <tbody>
                             <?php if (count($templates) > 0) : ?>
                                 <?php foreach ($templates as $template) : ?>
-                                    <div class="trow">
-                                        <div class="tdata col-1"><?= $template->template_id ?></div>
-                                        <div class="tdata col-3"><?= $template->titulo ?></div>
-                                        <div class="tdata col-2"><?= $template->tipo ?></div>
-                                        <div class="tdata col-1"><?= $template->autor ?></div>
-                                        <div class="tdata col-1"><?= $template->status ?></div>
-                                        <div class="tdata col-1"><?= $template->preco ?></div>
-                                        <div class="tdata col-1"><?= $template->created_at ?></div>
-                                        <div class="tdata col-2">
-                                            <a href=""> <i class="bi bi-eye"></i> </a>
-                                            <a href=""> <i class="bi bi-pencil-square"></i> </a>
-                                            <a href=""> <i class="bi bi-trash"></i> </a>
-                                        </div>
-                                    </div>
+                                    <tr>
+                                      <td><?= $template->template_id ?></td>
+                                      <td><?= $template->titulo ?></td>
+                                      <td><?= $template->tipo ?></td>
+                                      <td><?= $template->autor ?></td>
+                                      <td><?= $template->status ?></td>
+                                      <td><?= $template->preco . '.00 KZ' ?></td>
+                                      <td><?= $template->created_at ?></td>
+                                      <td>
+                                        <span>
+                                          <a href="#">Editar</a>
+                                          <a href="#">Excluir</a>
+                                        </span>
+                                      </td>
+                                    </tr>
                                 <?php endforeach; ?>
                             <?php else : ?>
-                                <div class="trow">
-                                    <div class="tdata col-12">Sem templates disponíveis. <a href="<?= route('templates.add') ?>" class="no-style">criar</a> </div>
-                                </div>
-                            <?php endif; ?>
-                        </div>
+                                <tr> <div class="tdata col-12">Sem templates disponíveis. <a href="<?= route('templates.add') ?>" class="no-style">criar</a> </div></tr>
+                            <?php endif;  ?>
+                          </tbody>
+                        </table>
+                        <!-- /.table -->
+                      </div>
+                      <!-- /.card-body -->
                     </div>
-                    <div class="table_actions">
-                        <?php if (count($templates) > 0) : ?>
-                            <a href=""> <small class="bi bi-arrow-left"></small> anterior </a>
-                            <div class="counter"> <span>1</span> de <span>3</span> </div>
-                            <a href=""> próximo <small class="bi bi-arrow-right"></small> </a>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+                    <!-- /.card -->
+                  </div>
+                  <!-- col-md-6 -->
+              </div>
+            </section>
+        </div> <!--/.content-wrapper-->
 
 
-    </div> <!--/.sp-wrapper-->
+
+    </div> <!--/.wrapper-->
+
+    <?= parts('footer') ?>
+
 
 </body>
 
 </html>
+<!-- section(js) -->
+<script src="<?= asset('js/jquery-3.3.1.min.js') ?>"></script>
+<script src="<?= asset('js/bootstrap.bundle.min.js') ?>"></script>
+<script src="<?= asset('js/adminlte.js') ?>"></script>

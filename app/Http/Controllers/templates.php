@@ -22,7 +22,14 @@ class templates extends Controller
     {
         $templates = DB::raw('select t.*, (select tipo_template from tipo_templates where tipo_template_id = t.tipo_template_id) as tipo from templates as t');
 
-        return view('Todos os template:app.templates.templates', compact('templates'));
+        return view('Templates:app.templates.templates', compact('templates'));
+    }
+
+    public function get_categorias()
+    {
+        $categorias = DB::table('tipo_templates')->get();
+
+        return view('Categorias:app.templates.categoria', compact('categorias'));
     }
 
     public function response_front(Request $request)
@@ -36,52 +43,6 @@ class templates extends Controller
         $tipo = DB::table('tipo_templates')->get();
 
         return view('Adicionar template:app.templates.add-template', compact('tipo'));
-    }
-
-    // Cria um registo na DB
-
-    public function store(Request $request)
-    {
-        /*if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $arquivo_zip = $_FILES["zip"]["tmp_name"];
-            $destino = storage_path(); // Substitua pelo caminho real
-
-            //dd(pathinfo($_FILES["zip"]["name"], PATHINFO_EXTENSION));
-            //dd($_FILES["zip"]["name"]);
-            
-            // Verifica se o arquivo é um arquivo zip
-            if (pathinfo($_FILES["zip"]["name"], PATHINFO_EXTENSION) == 'zip') {
-                // Descompacta o arquivo zip
-                $zip = new \ZipArchive;
-                if ($zip->open($arquivo_zip) === TRUE) {
-                    //dd($zip->filename);
-                    $zip->extractTo($destino);
-                    $zip->close();
-                    echo 'Arquivo zip descompactado com sucesso!';
-                } else {
-                    echo 'Falha ao descompactar o arquivo zip.';
-                }
-            } else {
-                echo 'Por favor, envie um arquivo zip válido.';
-            }
-        }*/
-
-        //$file = $_FILES['zip']['name'];
-        
-        echo json_encode($_FILES);
-
-        exit;
-
-        /*$fileId = DB::table('files')->insertId([]); // inserir file
-
-        $result = DB::table('templates')->insert(['titulo' => $request->temp_title, 'referencia' => $request->generated, 'tipo_template_id' => $request->temp_type, 'editar' => $request->temp_editable, 'descricao' => $request->temp_description, 'preco' => $request->temp_price == null ? '0.00' : $request->temp_price, 'status' => $request->temp_payment_status]);
-
-        if ($request == true) {
-
-            return redirect()->route('rota.de.redirecionamento');
-        }
-
-        return redirect()->route('rota.de.redirecionamento');*/
     }
 
     // Pega um registo(s) na DB
