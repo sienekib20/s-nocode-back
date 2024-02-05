@@ -22,7 +22,7 @@
         <div class="card-body login-card-body">
           <p class="login-box-msg">Inicie a tua sessão</p>
 
-          <form action="<?= route('login_entrar') ?>" method="post">
+          <form action="<?= route('login') ?>" method="post">
             <div class="input-group mb-3">
               <input type="text" class="form-control" name="username" placeholder="Email">
               <div class="input-group-append">

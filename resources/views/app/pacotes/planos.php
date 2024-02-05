@@ -49,6 +49,7 @@
                       <tr>
                         <td>#</td>
                         <td>Plano</td>
+                        <td>Preço</td>
                         <td>Descrição</td>
                         <td>Ação</td>
                       </tr>
@@ -58,6 +59,7 @@
                         <tr>
                           <td><?= $cat->pacote_id ?></td>
                           <td><?= $cat->pacote ?></td>
+                          <td><?= $cat->preco . '.00KZ'?></td>
                           <td><?= $cat->descricao ?></td>
                           <td>
                             <span>
@@ -90,8 +92,8 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label>Descrição</label>
-                            <textarea name="descrição" class="form-control"></textarea>
+                            <label>Plano</label>
+                            <input type="text" name="preco" class="form-control" placeholder="0.00KZ">
                           </div>
                         </div>
                       </div>
@@ -100,6 +102,12 @@
                         <div class="col-md-6">
                           <label>Criação</label>
                           <input type="text" name="data" class="form-control" placeholder="2024-01-05" disabled>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Descrição</label>
+                            <textarea name="descrição" class="form-control"></textarea>
+                          </div>
                         </div>
                       </div>
                       <!-- /.row -->

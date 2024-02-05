@@ -32,7 +32,7 @@ $('document').ready(() => {
     });*/
     document.getElementById("add-template-form").addEventListener("submit", (event) => {
         event.preventDefault(); // Impede o envio padrão do formulário
-
+        $('.wait-loader').removeClass('hide');
         const fileInput = document.querySelector("#zip");
         const fileCover = document.querySelector("#cover");
         const file = fileInput.files[0];
@@ -50,14 +50,17 @@ $('document').ready(() => {
         //console.log(formData);
 
         //return;
-
         const xhr = new XMLHttpRequest();
         xhr.open("POST", url);
         xhr.onload = () => {
             if (xhr.status >= 200 && xhr.status < 300) {
                 console.log(JSON.parse(xhr.responseText));
-                if (xhr.responseText == 'Salvo com sucesso') {
+                setTimeout(() => {
+                        $('.wait-loader').addClass('hide');
+                    }, 1500);
+                if (JSON.parse(xhr.responseText) == 'Salvo com sucesso') {
                     // parar o loader: 
+
                     alert('Criado com sucesso');
 
                     return;
@@ -65,11 +68,18 @@ $('document').ready(() => {
                 // parar o loader
                 alert('Algo deu errado, por favor tente mais tarde');
             } else {
-                console.error("Erro ao enviar formulário:", xhr.statusText);
+                setTimeout(() => {
+                        $('.wait-loader').addClass('hide');
+                    }, 1500);
+                alert("Erro ao enviar formulário:", xhr.statusText);
             }
         };
         xhr.onerror = () => {
+            setTimeout(() => {
+                        $('.wait-loader').addClass('hide');
+                    }, 1500);
             console.error("Erro ao enviar formulário:", xhr.statusText);
+            alert("Erro ao enviar formulário:", xhr.statusText);
         };
         xhr.send(formData);
     });

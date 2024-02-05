@@ -23,9 +23,15 @@ class app extends Controller
         return view('Inicio:app.index', compact('templates', 'em_uso', 'parceiros'));
     }
 
+    public function sms()
+    {
+        $mensagens = DB::table('mensagens')->get();
+
+        return view('Mensagem:app.mensagem.mensagem', compact('mensagens'));
+    }
+
     public function create_template()
     {
-
         return view('app.templates.add-template');
     }
 

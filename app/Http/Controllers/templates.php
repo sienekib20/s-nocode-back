@@ -32,6 +32,13 @@ class templates extends Controller
         return view('Categorias:app.templates.categoria', compact('categorias'));
     }
 
+    public function get_editados()
+    {
+        $categorias = DB::table('tipo_templates')->get();
+
+        return view('Categorias:app.templates.editados', compact('categorias'));
+    }
+
     public function response_front(Request $request)
     {
         //dd($request);

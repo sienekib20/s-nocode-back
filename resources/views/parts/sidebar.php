@@ -41,7 +41,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?= route('templates.list') ?>" class="nav-link <?= request()->path() == '/templates/edited' ? 'active' : '' ?>">
+          <a href="<?= route('templates.edited') ?>" class="nav-link <?= request()->path() == '/templates/edited' ? 'active' : '' ?>">
             <i class="bi bi-pencil-square nav-icon pl-1"></i>
             <p>Templates editados</p>
           </a>

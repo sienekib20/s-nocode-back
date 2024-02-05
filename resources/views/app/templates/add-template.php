@@ -108,6 +108,8 @@
             </section><!--/.content-->
         </div><!--/.content-wrapper-->
     </div> <!--/.wrapper-->
+
+    <?= parts('wait') ?>
     <?= parts('footer') ?>
 </body>
 

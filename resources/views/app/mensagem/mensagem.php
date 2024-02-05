@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?= asset('css/adminlte.min.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/fonts/font-awesome.min.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/fonts/bootstrap-icons.css') ?>">
-    <title>Parceiros</title>
+    <title>Mensagem</title>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -26,12 +26,12 @@
               <div class="container-fluid">
                 <div class="row mb-2">
                   <div class="col-sm-6">
-                    <h1 class="m-0">Parceiros</h1>
+                    <h1 class="m-0">Mensagens</h1>
                   </div><!-- /.col -->
                   <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                       <li class="breadcrumb-item"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item active">Parceiros</li>
+                      <li class="breadcrumb-item active">Mensagens</li>
                     </ol>
                   </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -47,22 +47,23 @@
                           <thead class="bg-light">
                             <tr>
                               <td>#</td>
-                              <td>Nome completo</td>
-                              <td>Sexo</td>
+                              <td>Expediente</td>
                               <td>E-mail</td>
-                              <td>Telefone</td>
-                              <td>Planos aderidos</td>
-                              <td>Qtd. templates</td>
-                              <td>Criação</td>
+                              <td>Nº Telefone</td>
+                              <td>Mensagem</td>
+                              <td>Data do envio</td>
                               <td>Ação</td>
                             </tr>
                           </thead>
                           <tbody>
-                            <?php foreach($parceiros as $cat): ?>
+                            <?php foreach($mensagens as $sms): ?>
                               <tr>
-                                <td><?= $cat->parceiro_id ?></td>
-                                <td><?= $cat->tipo_template ?? ''?></td>
-                                <td><?= $cat->created_at ?></td>
+                                <td><?= $sms->mensagen_id ?></td>
+                                <td><?= ucfirst($sms->expediente) ?></td>
+                                <td><?= $sms->mail ?></td>
+                                <td><?= $sms->telefone ?></td>
+                                <td><?= $sms->mensagem ?></td>
+                                <td><?= $sms->created_at ?></td>
                                 <td>
                                   <span>
                                     <a href="#">Ver</a>
