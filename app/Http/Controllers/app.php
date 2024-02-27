@@ -37,7 +37,7 @@ class app extends Controller
 
     public function parceiros()
     {
-        $parceiros = DB::table('parceiros')->get();
+        $parceiros = DB::raw('select c.*, (select count(adesao_pacote_id) from adesao_pacotes where cliente_id = c.conta_id) as aderidos, (select count(temp_parceiro_id) from temp_parceiros where parceiro_id = c.conta_id) as qtd from contas as c where conta_id = (select p.conta_id from parceiros as p where c.conta_id = p.conta_id)');
 
         return view('Parceiros:app.parceiros.index', compact('parceiros'));
     }

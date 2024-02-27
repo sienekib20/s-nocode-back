@@ -16,6 +16,7 @@ class DatabaseSeeders extends Seeder
             pacotes::class,
             estado_pacotes::class,
             urgencias::class,
+            categorias::class,
         ]);
     }
 

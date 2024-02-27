@@ -48,7 +48,6 @@
                             <tr>
                               <td>#</td>
                               <td>Nome completo</td>
-                              <td>Sexo</td>
                               <td>E-mail</td>
                               <td>Telefone</td>
                               <td>Planos aderidos</td>
@@ -58,11 +57,15 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <?php foreach($parceiros as $cat): ?>
-                              <tr>
-                                <td><?= $cat->parceiro_id ?></td>
-                                <td><?= $cat->tipo_template ?? ''?></td>
-                                <td><?= $cat->created_at ?></td>
+                            <?php foreach($parceiros as $par): ?>
+                              <tr>  
+                                <td><?= $par->conta_id ?></td>
+                                <td><?= $par->nome . ' ' .$par->apelido ?></td>
+                                <td><?= $par->email ?></td>
+                                <td><?= $par->telefone ?></td>
+                                <td><?= $par->aderidos ?></td>
+                                <td><?= $par->qtd ?></td>
+                                <td><?= $par->created_at ?></td>
                                 <td>
                                   <span>
                                     <a href="#">Ver</a>

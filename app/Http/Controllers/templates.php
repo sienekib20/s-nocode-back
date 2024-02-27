@@ -34,9 +34,18 @@ class templates extends Controller
 
     public function get_editados()
     {
-        $categorias = DB::table('tipo_templates')->get();
+        $editados = DB::raw('select t.*, (select tipo_template from tipo_templates where tipo_template_id = t.tipo_template_id) as tipo from templates as t where template_id = (select template_id from temp_parceiros where template_id = t.template_id limit 1)');
 
-        return view('Categorias:app.templates.editados', compact('categorias'));
+        return view('Categorias:app.templates.editados', compact('editados'));
+    }
+
+    public function get_em_uso()
+    {
+        $editados = DB::raw('select t.*, (select tipo_template from tipo_templates where tipo_template_id = t.tipo_template_id) as tipo from templates as t where template_id = (select template_id from temp_parceiros where template_id = t.template_id limit 1)');
+
+        dd('criar a tabela de templates publicados');
+
+        return view('Categorias:app.templates.editados', compact('editados'));
     }
 
     public function response_front(Request $request)

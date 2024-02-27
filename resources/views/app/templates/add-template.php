@@ -46,31 +46,37 @@
                                 <form action="" method="POST" id="add-template-form" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-6">
+                                            <label class="input-label">Título template</label>
                                             <input type="text" name="titulo" id="title" class="form-control" required placeholder="Titulo">
                                         </div>
                                         <div class="col-6">
+                                            <label class="input-label">Autor</label>
                                             <input type="text" name="autor" class="form-control" placeholder="Autor" required>
                                         </div>
                                     </div>
                                     <div class="row mt-5">
                                         <div class="col-6">
+                                            <label class="input-label">Nível de acesso</label>
                                             <select name="status" id="paystatus" class="form-control">
                                                 <option value="Grátis">Template Grátis</option>
                                                 <option value="Pago">Template Pago</option>
                                             </select>
                                         </div>
                                         <div class="col-6">
+                                            <label class="input-label">Preço</label>
                                             <input type="text" name="preco" id="preco" class="form-control" autocomplete="off" placeholder="0.00" disabled required>
                                         </div>
                                     </div>
                                     <div class="row mt-5">
                                         <div class="col-6">
+                                            <label class="input-label">Edição</label>
                                             <select name="editar" id="editable" class="form-control">
                                                 <option value="YES">Template Editável</option>
                                                 <option value="NO">Não editável</option>
                                             </select>
                                         </div>
                                         <div class="col-6">
+                                            <label class="input-label">Catergoria</label>
                                             <select name="tipo_template" id="tipo" class="form-control">
                                                 <?php foreach ($tipo as $t) : ?>
                                                     <option value="<?= $t->tipo_template_id ?>"><?= $t->tipo_template ?></option>
@@ -80,14 +86,13 @@
                                     </div>
                                     <div class="row mt-5">
                                         <div class="col-6">
-                                            <input type="file" id="zip" name="zip" accept=".zip,.rar" hidden>
-                                            <label for="zip" class="form-control">Carregar template</label>
+                                            <label for="formFile" class="input-label">Carregar template</label>
+                                            <input class="form-control" id="zip" name="zip" accept=".zip" type="file" id="formFile">
                                         </div>
                                         <div class="col-6">
-                                            <input type="file" id="cover" name="cover" accept="image/*" multiple hidden>
-                                            <label for="cover" class="form-control">Carregar Imagem de Capa</label>
+                                            <label for="cover" class="input-label">Carregar Imagem de Capa</label>
+                                            <input class="form-control" id="cover" name="cover" accept="image/*" type="file" id="cover">
                                         </div>
-
                                     </div>
                                     <div class="row mt-5">
                                         <div class="col-6"></div>

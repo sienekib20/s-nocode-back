@@ -13,6 +13,7 @@ img {
 body {
     font-family: 'Roboto-Light';
     background-color: #F9F9FF;
+    border-radius: 2px;
 }
 
 
@@ -28,6 +29,11 @@ body {
 
 ::-webkit-scrollbar-track {
     background-color: #aaa;
+}
+
+::-moz-selection {
+    color: #fff;
+    background-color: #cc0000;
 }
 
 ::selection {
@@ -500,8 +506,10 @@ TEMPLATE-ITEM
 .template-cover img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
 }
 
 .template-info {
@@ -745,6 +753,10 @@ label.form-label:hover {
     opacity: 0.45;
 }
 
+.form-input:-moz-read-only + .form-label {
+    top: -20%;
+}
+
 .form-input:valid+.form-label,
 .form-input:focus+.form-label,
 .form-input:read-only + .form-label {
@@ -816,8 +828,10 @@ label.form-label:hover {
 .form-label img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
     border-radius: 5px;
     display: none;
 }

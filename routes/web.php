@@ -20,6 +20,7 @@ Route::prefix('templates')->group('auth:authorize', function () {
     Route::get('/add', [templates::class, 'add_template']);
     Route::post('/create', [templates::class, 'store']);
     Route::get('/edited', [templates::class, 'get_editados']);
+    Route::get('/used', [templates::class, 'get_em_uso']);
     Route::get('/categoria', [templates::class, 'get_categorias']); // named_routes
 });
 

@@ -47,7 +47,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?= route('templates.list') ?>" class="nav-link <?= request()->path() == '/templates/usage' ? 'active' : '' ?>">
+          <a href="<?= route('templates.used') ?>" class="nav-link <?= request()->path() == '/templates/usage' ? 'active' : '' ?>">
             <i class="bi bi-person-fill nav-icon pl-1"></i>
             <p>Templates em uso</p>
           </a>
