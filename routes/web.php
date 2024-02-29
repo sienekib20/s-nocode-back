@@ -22,9 +22,10 @@ Route::prefix('templates')->group('auth:authorize', function () {
     Route::get('/edited', [templates::class, 'get_editados']);
     Route::get('/used', [templates::class, 'get_em_uso']);
     Route::get('/categoria', [templates::class, 'get_categorias']); // named_routes
+    Route::post('/categoria/update', [templates::class, 'update_categoria']); // named_routes
 });
 
-Route::group('auth:authorize', function() {
+Route::group('auth:authorize', function () {
     Route::get('/parceiros', [app::class, 'parceiros']);
     Route::get('/mensagem', [app::class, 'sms']);
 });

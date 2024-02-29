@@ -105,12 +105,12 @@ class Database
 	{
 		try {
 			$data = is_array(array_values($data)[0]) ? $data : [$data];
-
+            
 			array_map(function ($data) {
 
 				$columns = implode(' = ?, ', array_keys($data)) . " = ?";
 
-				$sql = "UPDATE TABLE {$this->table} SET $columns ";
+				$sql = "UPDATE {$this->table} SET $columns ";
 				if (empty($this->wheres)) {
 					echo 'Sql update mal formado, falta a cláusula where';
 					exit;
@@ -132,7 +132,6 @@ class Database
 				foreach (array_column($this->wheres, 'value') as $value) {
 					$bind[] = $value;
 				}
-
 
 				$this->connection->beginTransaction();
 				$stmt = $this->connection->prepare($sql);

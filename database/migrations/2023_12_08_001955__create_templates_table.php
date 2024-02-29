@@ -18,12 +18,14 @@ class CreateTemplatesTable
 			`descricao` varchar(250) not null,
             `template` text not null,
 			`tipo_template_id` int(11) not null,
+			`categoria_id` int(11) not null,
 			`file_id` int(11) not null,
 			`created_at` timestamp not null default current_timestamp,
 			`updated_at` timestamp null,
 			primary key(`template_id`),
 			foreign key(`file_id`) references files(`file_id`),
-			foreign key(`tipo_template_id`) references tipo_templates(`tipo_template_id`)
+			foreign key(`tipo_template_id`) references tipo_templates(`tipo_template_id`),
+            foreign key(`categoria_id`) references categorias(`categoria_id`)
 		");
 	}
 

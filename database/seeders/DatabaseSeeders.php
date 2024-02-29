@@ -17,6 +17,7 @@ class DatabaseSeeders extends Seeder
             estado_pacotes::class,
             urgencias::class,
             categorias::class,
+            faqs::class,
         ]);
     }
 

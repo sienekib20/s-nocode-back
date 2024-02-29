@@ -17,26 +17,26 @@
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-          <img class="animation__wobble" src="<?= asset('img/AdminLTELogo.png') ?>" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__wobble" src="<?= asset('img/AdminLTELogo.png') ?>" alt="AdminLTELogo" height="60" width="60">
         </div>
         <?= parts('navbar') ?>
         <?= parts('sidebar') ?>
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
-              <div class="container-fluid">
-                <div class="row mb-2">
-                  <div class="col-sm-6">
-                    <h1 class="m-0">Adicionar template</h1>
-                  </div><!-- /.col -->
-                  <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                      <li class="breadcrumb-item"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item active">Adicionar</li>
-                    </ol>
-                  </div><!-- /.col -->
-                </div><!-- /.row -->
-              </div><!-- /.container-fluid -->
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Adicionar template</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Adicionar</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
             </div> <!--/.content-header-->
             <section class="content">
                 <div class="col-12">
@@ -76,7 +76,7 @@
                                             </select>
                                         </div>
                                         <div class="col-6">
-                                            <label class="input-label">Catergoria</label>
+                                            <label class="input-label">Tipo template</label>
                                             <select name="tipo_template" id="tipo" class="form-control">
                                                 <?php foreach ($tipo as $t) : ?>
                                                     <option value="<?= $t->tipo_template_id ?>"><?= $t->tipo_template ?></option>
@@ -95,8 +95,16 @@
                                         </div>
                                     </div>
                                     <div class="row mt-5">
-                                        <div class="col-6"></div>
                                         <div class="col-6">
+                                            <label class="input-label">Categoria</label>
+                                            <select name="categoria_template" id="tipo" class="form-control">
+                                                <?php foreach ($categorias as $c) : ?>
+                                                    <option value="<?= $c->categoria_id ?>"><?= $c->categoria ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="input-label">Descreva o template</label>
                                             <textarea name="descricao" name="descricao" id="descricao" class="form-control" placeholder="Descricao" required></textarea>
                                         </div>
                                     </div>

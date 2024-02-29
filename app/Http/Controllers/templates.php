@@ -32,6 +32,17 @@ class templates extends Controller
         return view('Categorias:app.templates.categoria', compact('categorias'));
     }
 
+    public function update_categoria(Request $request)
+    {
+        $responseDB = DB::table('tipo_templates')
+            ->where('tipo_template_id', '=', $request->id)
+            ->update(['tipo_template' => $request->categoria]);
+
+            $response = (is_null($responseDB)) ? 'ok' : 'no';
+            return response()->json($response);
+    }
+
+
     public function get_editados()
     {
         $editados = DB::raw('select t.*, (select tipo_template from tipo_templates where tipo_template_id = t.tipo_template_id) as tipo from templates as t where template_id = (select template_id from temp_parceiros where template_id = t.template_id limit 1)');
@@ -57,8 +68,9 @@ class templates extends Controller
     {
 
         $tipo = DB::table('tipo_templates')->get();
+        $categorias = DB::table('categorias')->get();
 
-        return view('Adicionar template:app.templates.add-template', compact('tipo'));
+        return view('Adicionar template:app.templates.add-template', compact('tipo', 'categorias'));
     }
 
     // Pega um registo(s) na DB
