@@ -57,7 +57,7 @@
                           </thead>
                           <tbody>
                             <?php foreach($mensagens as $sms): ?>
-                              <tr>
+                              <tr id="item-<?= $sms->mensagen_id ?>">
                                 <td><?= $sms->mensagen_id ?></td>
                                 <td><?= ucfirst($sms->expediente) ?></td>
                                 <td><?= $sms->mail ?></td>
@@ -66,7 +66,7 @@
                                 <td><?= $sms->created_at ?></td>
                                 <td>
                                   <span>
-                                    <a href="#">Ver</a>
+                                    <a href="#" id="link-<?= $sms->mensagen_id ?>" data-toggle="modal" data-target="#modal-default" class="load-defaults">Ver</a>
                                     <a href="#">Excluir</a>
                                   </span>
                                 </td>
@@ -83,6 +83,84 @@
                 </div>
               </div>
             </section>
+            <div class="modal fade" id="modal-default">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Mensagem cliente</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <small class="text-muted form-label">Id. Expediente</small>
+                                    <span class="d-block text-bold val"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <small class="text-muted form-label">Nome do expediente</small>
+                                    <span class="d-block text-bold val"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <small class="text-muted form-label">Endereço email</small>
+                                    <span class="d-block text-bold val"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <small class="text-muted form-label">Nº telefone</small>
+                                    <span class="d-block text-bold val"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <small class="text-muted form-label">Contéudo da mensagem</small>
+                                    <span class="d-block val"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <small class="text-muted form-label">Opções</small>
+                                    <span class="d-block text-bold val">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer justify-content-between">
+                    <div class="container">
+                        <div class="row">
+                            <form action="" id="sendResponse" class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label">Respota</label>
+                                    <small class="text-muted d-block my-2 mb-3">Podes enviar uma mensagem de texto que será vista como notificação para o cliente, ou ligar pra ele com o número acima referenciado</small>
+                                    <textarea type="text" class="form-control" placeholder="Escreve aqui"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Enviar resposta</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                  </div>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
         </div>
     </div><!--/.wrapper-->
 
@@ -97,3 +175,17 @@
 <script src="<?= asset('js/jquery-3.3.1.min.js') ?>"></script>
 <script src="<?= asset('js/bootstrap.bundle.min.js') ?>"></script>
 <script src="<?= asset('js/adminlte.js') ?>"></script>
+
+<script>
+    const linkButton = document.querySelectorAll('.load-defaults');
+    const val = document.querySelectorAll('.val');
+        linkButton.forEach(link => {
+            link.addEventListener('click', function(e) {
+                var id = e.target.id.split('-')[1];
+                var lineItems = document.querySelectorAll(`#item-${id} td`);
+                val.forEach(function(value, key) {
+                    value.innerText = lineItems[key].innerText
+                });
+            });
+        }); 
+</script>

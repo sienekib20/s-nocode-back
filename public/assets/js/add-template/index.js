@@ -62,7 +62,6 @@ $('document').ready(() => {
                     // parar o loader: 
 
                     alert('Criado com sucesso');
-
                     return;
                 }
                 // parar o loader

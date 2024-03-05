@@ -10,28 +10,36 @@ class tipo_templates
 	{
 		DB::table('tipo_templates')->insert([
 			[
-				'tipo_template' => 'Landing Page'
+				'tipo_template' => 'Landing Page',
+                'preco' => '1000.00'
 			],
 			[
-				'tipo_template' => 'Dashboard'
+				'tipo_template' => 'Dashboard',
+                'preco' => '1000.00'
 			],
 			[
-				'tipo_template' => 'Website'
+				'tipo_template' => 'Website',
+                'preco' => '1000.00'
 			],
 			[
-				'tipo_template' => 'E-Commerce'
+				'tipo_template' => 'E-Commerce',
+                'preco' => '1000.00'
 			],
 			[
-				'tipo_template' => 'Single Page'
+				'tipo_template' => 'Single Page',
+                'preco' => '1000.00'
 			],
 			[
-				'tipo_template' => 'Portfólio'
+				'tipo_template' => 'Portfólio',
+                'preco' => '1000.00'
 			],
 			[
-				'tipo_template' => 'Plataforma'
+				'tipo_template' => 'Plataforma',
+                'preco' => '1000.00'
 			],
 			[
-				'tipo_template' => 'outro'
+				'tipo_template' => 'outro',
+                'preco' => '1000.00'
 			]
 		]);
 	}

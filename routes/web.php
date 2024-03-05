@@ -23,6 +23,8 @@ Route::prefix('templates')->group('auth:authorize', function () {
     Route::get('/used', [templates::class, 'get_em_uso']);
     Route::get('/categoria', [templates::class, 'get_categorias']); // named_routes
     Route::post('/categoria/update', [templates::class, 'update_categoria']); // named_routes
+    Route::get('/type', [templates::class, 'get_cat_type']);
+    Route::post('/type/update', [templates::class, 'update_cat_type']);
 });
 
 Route::group('auth:authorize', function () {

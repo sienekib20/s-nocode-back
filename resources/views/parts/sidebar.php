@@ -31,9 +31,17 @@
         <li class="nav-item">
           <a href="<?= route('templates.categoria') ?>" class="nav-link <?= request()->path() == '/templates/categoria' ? 'active' : '' ?>">
             <i class="bi bi-layers-fill nav-icon pl-1"></i>
+            <p>Tipos template</p> <!-- ficheiros audios permitidos ou nao -->
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="<?= route('templates.type') ?>" class="nav-link <?= request()->path() == '/templates/type' ? 'active' : '' ?>">
+            <i class="bi bi-layers-fill nav-icon pl-1"></i>
             <p>Categorias template</p> <!-- ficheiros audios permitidos ou nao -->
           </a>
         </li>
+
         <li class="nav-item">
           <a href="<?= route('templates.add') ?>" class="nav-link <?= request()->path() == '/templates/add' ? 'active' : '' ?>">
             <i class="far fa-plus nav-icon"></i>
@@ -61,7 +69,7 @@
             </p>
           </a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a href="<?= route('planos') ?>" class="nav-link <?= request()->path() == '/planos' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-list"></i>
             <p>Planos e preços</p>
@@ -72,7 +80,7 @@
             <i class="nav-icon fas fa-shopping-cart"></i>
             <p>Planos aderidos</p>
           </a>
-        </li>
+        </li>-->
 
         <li class="nav-item">
           <a href="<?= route('mensagem') ?>" class="nav-link <?= request()->path() == '/mensagem' ? 'active' : '' ?>">
@@ -86,7 +94,15 @@
           <a href="<?= route('pedidos') ?>" class="nav-link <?= request()->path() == '/pedidos' ? 'active' : '' ?>">
             <i class="nav-icon far fa-arrow-up"></i>
             <p>
-              Pedidos
+              Encomendas
+            </p> 
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= route('pedidos') ?>" class="nav-link <?= request()->path() == '/pedidos' ? 'active' : '' ?>">
+            <i class="nav-icon far fa-question"></i>
+            <p>
+              Faqs
             </p> 
           </a>
         </li>

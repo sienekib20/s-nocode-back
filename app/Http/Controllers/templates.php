@@ -32,11 +32,28 @@ class templates extends Controller
         return view('Categorias:app.templates.categoria', compact('categorias'));
     }
 
+    public function get_cat_type()
+    {
+        $categorias = DB::table('categorias')->get();
+
+        return view('Categorias:app.templates.type-cat', compact('categorias'));
+    }
+
     public function update_categoria(Request $request)
     {
         $responseDB = DB::table('tipo_templates')
             ->where('tipo_template_id', '=', $request->id)
-            ->update(['tipo_template' => $request->categoria]);
+            ->update(['tipo_template' => $request->categoria, 'preco' => $request->preco, 'updated_at' => date('Y-m-d H:i:s')]);
+
+            $response = (is_null($responseDB)) ? 'ok' : 'no';
+            return response()->json($response);
+    }
+
+    public function update_cat_type(Request $request)
+    {
+        $responseDB = DB::table('categorias')
+            ->where('categoria_id', '=', $request->id)
+            ->update(['categoria' => $request->categoria, 'preco' => $request->preco, 'updated_at' => date('Y-m-d H:i:s')]);
 
             $response = (is_null($responseDB)) ? 'ok' : 'no';
             return response()->json($response);

@@ -67,8 +67,8 @@
                                       <td><?= $template->created_at ?></td>
                                       <td>
                                         <span>
-                                          <a href="#">Editar</a>
-                                          <a href="#">Excluir</a>
+                                          <a href="#" class="indisponivel">Editar</a>
+                                          <a href="#" class="indisponivel">Excluir</a>
                                         </span>
                                       </td>
                                     </tr>
@@ -103,3 +103,13 @@
 <script src="<?= asset('js/jquery-3.3.1.min.js') ?>"></script>
 <script src="<?= asset('js/bootstrap.bundle.min.js') ?>"></script>
 <script src="<?= asset('js/adminlte.js') ?>"></script>
+
+<script>
+    const indisponivelBtns = document.querySelectorAll('.indisponivel');
+        indisponivelBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('opção indisponivel de momento');
+            });
+        });
+</script>

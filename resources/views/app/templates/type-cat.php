@@ -26,12 +26,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Tipos template</h1>
+                            <h1 class="m-0">Categorias</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Tipos template</li>
+                                <li class="breadcrumb-item active">Categorias</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -48,7 +48,7 @@
                                         <thead class="bg-light">
                                             <tr>
                                                 <td>#</td>
-                                                <td>Tipo</td>
+                                                <td>Categoria</td>
                                                 <td>Preço</td>
                                                 <td>Ação</td>
                                             </tr>
@@ -56,12 +56,12 @@
                                         <tbody>
                                             <?php foreach ($categorias as $cat) : ?>
                                                 <tr>
-                                                    <td><?= $cat->tipo_template_id ?></td>
-                                                    <td id="edit-name-<?= $cat->tipo_template_id ?>"><?= $cat->tipo_template ?></td>
+                                                    <td><?= $cat->categoria_id ?></td>
+                                                    <td id="editType-name-<?= $cat->categoria_id ?>"><?= $cat->categoria ?></td>
                                                     <td><?= $cat->preco ?> KZ</td>
                                                     <td>
                                                         <span>
-                                                            <a href="#" id="edit-<?= $cat->tipo_template_id ?>" class="edit_template_type">Editar</a>
+                                                            <a href="#" id="editT-<?= $cat->categoria_id ?>" class="edit_template_c">Editar</a>
                                                             <a href="#">Excluir</a>
                                                         </span>
                                                     </td>
@@ -84,8 +84,8 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Tipo</label>
-                                                        <input type="text" name="categoria" class="form-control" placeholder="Tipo template">
+                                                        <label>Categoria</label>
+                                                        <input type="text" name="categoria" class="form-control" placeholder="Categoria">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -142,13 +142,13 @@
 
 <script>
     const templateTypeForm = document.getElementById('templateTypeForm');
-    const btnEditTemplateType = document.querySelectorAll('.edit_template_type');
+    const btnEditTemplateType = document.querySelectorAll('.edit_template_c');
     let currentId = -1;
         btnEditTemplateType.forEach(btnEdit => {
             btnEdit.addEventListener('click', (e) => {
                 var id = e.target.id.split('-')[1];
                 currentId = id;
-                var currentItemName = document.getElementById('edit-name-'+id);
+                var currentItemName = document.getElementById('editType-name-'+id);
                 document.querySelector('[name="categoria"]').value = currentItemName.innerText;
                 var btnAddTemplateType = document.getElementById('addTemplateType');
                     btnAddTemplateType.classList.add('d-none');
@@ -162,7 +162,7 @@
             const formData = new FormData(templateTypeForm);
             formData.append('id', currentId);
             const xhr = new XMLHttpRequest;
-            xhr.open('POST', '/templates/categoria/update');
+            xhr.open('POST', '/templates/type/update');
             xhr.onload = () => {
                 if (xhr.status>= 200 && xhr.status< 300) {
                     setTimeout(() => {
