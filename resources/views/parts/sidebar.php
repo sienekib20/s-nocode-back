@@ -99,7 +99,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?= route('faqs') ?>" class="nav-link <?= request()->path() == '/pedidos' ? 'active' : '' ?>">
+          <a href="<?= route('faqs') ?>" class="nav-link <?= request()->path() == '/faqs' ? 'active' : '' ?>">
             <i class="nav-icon far fa-question"></i>
             <p>
               Faqs
