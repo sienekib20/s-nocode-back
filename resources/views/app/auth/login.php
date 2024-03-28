@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?= asset('css/adminlte.min.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/fonts/font-awesome.min.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/fonts/bootstrap-icons.css') ?>">
-    <script src="/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="<?= asset('js/jquery.js') ?>"></script>
     <title>Entrar</title>
 </head>
 
@@ -65,6 +65,5 @@
 </html>
 
 <!-- section(js) -->
-<script src="<?= asset('js/jquery.min.js') ?>"></script>
 <script src="<?= asset('js/bootstrap.bundle.min.js') ?>"></script>
 <script src="<?= asset('js/adminlte.js') ?>"></script>

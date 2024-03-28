@@ -14,6 +14,7 @@ class CreatePedidosClientesTable
 			`tipo_template_id` int(11) not null,
             `categoria_id` int(11) not null,
 			`prazo` varchar(250) not null,
+            `preco` varchar(250) not null,
             `urgencia_id` int(11) not null,
 			`descricao` text not null,
 			`created_at` timestamp not null default current_timestamp,

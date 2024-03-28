@@ -13,7 +13,9 @@ class Response
         $this->setHeader('Access-Control-Allow-Headers', 'Content-Type');
         $this->setHeader('Access-Control-Allow-Credentials', 'true');
 
-        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        $method = $_SERVER['REQUEST_METHOD'] ?? null;
+
+        if (!is_null($method) && $method === 'OPTIONS') {
             $this->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
             $this->send();
         }

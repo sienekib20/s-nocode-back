@@ -131,7 +131,9 @@
 <div class="routes">
     <input type="hidden" value="<?= env('API_URL') ?>" id="api_route">
 </div>
-
+<script>
+    alert($('#api_route').val());
+</script>
 <script src="<?= asset('js/add-template/index.js') ?>"></script>
 <script src="<?= asset('js/bootstrap.bundle.min.js') ?>"></script>
 <script src="<?= asset('js/adminlte.js') ?>"></script>

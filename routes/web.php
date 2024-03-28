@@ -2,6 +2,7 @@
 
 use Sienekib\Mehael\Router\Anotation\Route;
 use App\Http\Controllers\app;
+use App\Http\Controllers\encomendas;
 use App\Http\Controllers\authentication;
 use App\Http\Controllers\contas;
 use App\Http\Controllers\templates;
@@ -30,6 +31,7 @@ Route::prefix('templates')->group('auth:authorize', function () {
 Route::group('auth:authorize', function () {
     Route::get('/parceiros', [app::class, 'parceiros']);
     Route::get('/mensagem', [app::class, 'sms']);
+    Route::get('/pedidos', [encomendas::class, 'index']);
 });
 
 Route::prefix('planos')->group('auth:authorize', function () {

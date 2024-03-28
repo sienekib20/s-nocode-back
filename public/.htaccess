@@ -1,6 +1,8 @@
 RewriteEngine On
 
-Header setifempty Access-Control-Allow-Origin "*"
-Header setifempty Access-Control-Allow-Headers "*"
-Header setifempty Access-Control-Allow-Credentials true
-Header setifempty Access-Control-Allow-Methods "GET, POST, OPTIONS"
+# Assegura que arquivos ou diretórios existentes não sejam redirecionados
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Roteia todas as outras solicitações para index.php
+RewriteRule ^(.*)$ index.php [QSA,L]

@@ -62,6 +62,9 @@ class AlquimistCommand
             case 'migrate:fresh':
                 $this->migrate();
                 break;
+            case 'migrate:table':
+                $this->migrate_table($argv[2]);
+                break;
             default:
                 $this->printer->withError("Unknown command: {$command}")->exit();
         }
@@ -273,6 +276,64 @@ class AlquimistCommand
     {
         $path = $this->app . 'Models';
         $this->make('model', $path, $name);
+    }
+
+    private function migrate_table(string $table_name)
+    {
+        $migrations = array_values(array_diff(scandir($this->database), ['.', '..', 'leiame.txt']));
+
+        echo "\033[0;33mDropping the current migrations\033[0m" . PHP_EOL;
+        sleep(0.5);
+        echo "\033[0;33mCurrent migration created successfully\033[0m" . PHP_EOL;
+        sleep(0.8);
+
+        //var_dump(env('DB_DATABASE'));exit;
+        if (env('DB_DATABASE') == null)
+            die ('Invalid database name');
+
+        Schema::dropDbAndCreate(env('DB_DATABASE'));
+        
+        $migration = null;
+
+
+        foreach($migrations as $migr) {
+            if (str_contains($migr, $table_name)) {
+                $migration = dirname(__DIR__, 3) . '/' . $this->database . "/{$migr}";
+            }
+        }
+
+        if (!is_null($migration)) {
+            include $migration;
+
+            $migration = pathinfo($migration, PATHINFO_FILENAME);
+            $action = explode('create_', $migration)[1];
+            $action = explode('_table', $action)[0];
+            if (str_contains($action, '_')) {
+                $new_name = "Create";
+                $named = explode('_', $action);
+                foreach ($named as $index => $n) {
+                    $new_name .= ($index == count($named) - 1) ? ucfirst($this->build_migration_table($n)) : ucfirst($n);
+                }
+                $new_name .= "Table";
+            } else {
+                $new_name = "Create" . ucfirst($this->build_migration_table($action)) . "Table";
+            }
+
+            $action = new $new_name();
+            $action->down();
+
+            
+            echo "\033[0;32mMigrating: $filename\033[0m" . PHP_EOL;
+            sleep(date('s')/60);
+            
+            $action->up();
+
+            echo "\033[0;33mMigrated: $filename (" . date('m:s') . "ms)\033[0m" . PHP_EOL;
+            sleep(date('s')/60);
+        } else {
+            echo "\033[0;33mInvalid migration name\033[0m" . PHP_EOL;
+        }
+
     }
 
     private function migrate()
